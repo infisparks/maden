@@ -18,7 +18,8 @@ export default function Portfolio() {
           Our Amenities
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Scrollable Container */}
+        <div className="flex space-x-8 overflow-x-auto pb-4">
           {featuredProjects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -27,6 +28,7 @@ export default function Portfolio() {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex-shrink-0 w-80"
             >
               <Link 
                 to={`/projects/${project.id}`}
@@ -37,8 +39,9 @@ export default function Portfolio() {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#15302d]/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                {/* Overlay with pointer-events-none */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#15302d]/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-auto">
                     <h3 className="text-xl font-semibold text-[#f6db98]">
                       {project.title}
                     </h3>
