@@ -29,6 +29,14 @@ const floorPlans = [
     details: 'Garden Terrace • Entertainment Area • Pool',
     amenities: ['Infinity Pool', 'Outdoor Kitchen', 'Lounge Area']
   }
+  {
+    id: 'floor-3',
+    name: 'Rooftop',
+    image: third,
+    details: 'Garden Terrace • Entertainment Area • Pool',
+    amenities: ['Infinity Pool', 'Outdoor Kitchen', 'Lounge Area']
+  }
+  
 ];
 
 export default function FloorMap() {

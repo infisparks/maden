@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { projects } from '../../data/projects';
 
 export default function Portfolio() {
-  const featuredProjects = projects.slice(0, 3);
+  const featuredProjects = projects; // Display all projects
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
