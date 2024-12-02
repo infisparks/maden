@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PageHeader from '../components/shared/PageHeader';
 import FloorMap from '../components/home/FloorMap';
-import m1 from './../icon/m1.jpg'; // Adjust the path based on your project structure
-import m2 from './../icon/m2.jpg'; // Adjust the path based on your project structure
+import m1 from './../icon/m1.png'; // Adjust the path based on your project structure
+import m2 from './../icon/m2.png'; // Adjust the path based on your project structure
 
 const FloorMapPage: React.FC = () => {
   const [hoveredImage, setHoveredImage] = useState<null | number>(null);
