@@ -9,7 +9,7 @@ export default function FloorMapTabs({ activeTab, onTabChange }: FloorMapTabsPro
   const tabs = [
     { id: 'overview', label: 'Overview' },
     // { id: 'amenities', label: 'Amenities' },
-    { id: 'map', label: 'Building Map' }
+   
   ];
 
   return (
