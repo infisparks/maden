@@ -28,7 +28,7 @@ const floorPlans = [
     image: third,
     details: 'Garden Terrace • Entertainment Area • Pool',
     amenities: ['Infinity Pool', 'Outdoor Kitchen', 'Lounge Area']
-  }
+  },
   {
     id: 'floor-3',
     name: 'Rooftop',
