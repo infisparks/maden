@@ -8,12 +8,12 @@ const FloorMapPage: React.FC = () => {
   // Correctly typed state
   const [hoveredImage, setHoveredImage] = useState<null | number>(null);
 
-  // Inline styles with explicit typing
+  // Adjusted container style
   const containerStyle: React.CSSProperties = {
     display: 'flex',
-    flexDirection: 'column', // 'column' is a valid FlexDirection
-    alignItems: 'center',
-    padding: '20px',
+    flexDirection: 'column',
+    width: '100%', // Ensure full width
+    padding: '20px', // Optional: Adjust as needed
     fontFamily: 'Arial, sans-serif',
   };
 
@@ -25,6 +25,7 @@ const FloorMapPage: React.FC = () => {
     backgroundColor: '#f9f9f9',
     borderRadius: '8px',
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    alignSelf: 'center', // Center the section within the container
   };
 
   const sectionTitleStyle: React.CSSProperties = {
@@ -36,7 +37,7 @@ const FloorMapPage: React.FC = () => {
 
   const mapImagesContainerStyle: React.CSSProperties = {
     display: 'flex',
-    flexWrap: 'wrap', // 'wrap' is a valid FlexWrap
+    flexWrap: 'wrap',
     gap: '20px',
     justifyContent: 'center',
   };
@@ -51,7 +52,7 @@ const FloorMapPage: React.FC = () => {
     width: '100%',
     height: 'auto',
     borderRadius: '4px',
-    objectFit: 'cover', // 'cover' is a valid ObjectFit
+    objectFit: 'cover',
     transition: 'transform 0.3s ease',
   };
 
@@ -60,51 +61,53 @@ const FloorMapPage: React.FC = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={{ width: '100%' }}>
       <PageHeader
         title="Floor Plans"
         subtitle="Explore our thoughtfully designed spaces"
         image="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3"
       />
-      <FloorMap />
+      <div style={containerStyle}>
+        <FloorMap />
 
-      {/* Building Map Section */}
-      <section style={sectionStyle}>
-        <h2 style={sectionTitleStyle}>Building Map</h2>
-        <div style={mapImagesContainerStyle}>
-          {/* First Map Image */}
-          <div
-            style={mapImageWrapperStyle}
-            onMouseEnter={() => setHoveredImage(1)}
-            onMouseLeave={() => setHoveredImage(null)}
-          >
-            <img
-              src={m1}
-              alt="Building Map 1"
-              style={{
-                ...mapImageStyle,
-                ...(hoveredImage === 1 ? mapImageHoverStyle : {}),
-              }}
-            />
-          </div>
+        {/* Building Map Section */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>Building Map</h2>
+          <div style={mapImagesContainerStyle}>
+            {/* First Map Image */}
+            <div
+              style={mapImageWrapperStyle}
+              onMouseEnter={() => setHoveredImage(1)}
+              onMouseLeave={() => setHoveredImage(null)}
+            >
+              <img
+                src={m1}
+                alt="Building Map 1"
+                style={{
+                  ...mapImageStyle,
+                  ...(hoveredImage === 1 ? mapImageHoverStyle : {}),
+                }}
+              />
+            </div>
 
-          {/* Second Map Image */}
-          <div
-            style={mapImageWrapperStyle}
-            onMouseEnter={() => setHoveredImage(2)}
-            onMouseLeave={() => setHoveredImage(null)}
-          >
-            <img
-              src={m2}
-              alt="Building Map 2"
-              style={{
-                ...mapImageStyle,
-                ...(hoveredImage === 2 ? mapImageHoverStyle : {}),
-              }}
-            />
+            {/* Second Map Image */}
+            <div
+              style={mapImageWrapperStyle}
+              onMouseEnter={() => setHoveredImage(2)}
+              onMouseLeave={() => setHoveredImage(null)}
+            >
+              <img
+                src={m2}
+                alt="Building Map 2"
+                style={{
+                  ...mapImageStyle,
+                  ...(hoveredImage === 2 ? mapImageHoverStyle : {}),
+                }}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 };
