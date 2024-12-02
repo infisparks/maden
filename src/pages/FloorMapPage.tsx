@@ -13,11 +13,13 @@ const FloorMapPage: React.FC = () => {
   const openModal = (imageSrc: string) => {
     setSelectedImage(imageSrc);
     setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedImage('');
+    document.body.style.overflow = 'auto';
   };
 
   useEffect(() => {
@@ -109,7 +111,7 @@ const FloorMapPage: React.FC = () => {
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1000,
-    overflow: 'hidden',
+    overflow: 'auto',
   };
 
   const modalContentStyle: React.CSSProperties = {
@@ -125,7 +127,8 @@ const FloorMapPage: React.FC = () => {
 
   const modalImageStyle: React.CSSProperties = {
     width: '100%',
-    height: '100%',
+    height: 'auto',
+    maxHeight: '90vh',
     objectFit: 'contain',
     borderRadius: '8px',
   };
