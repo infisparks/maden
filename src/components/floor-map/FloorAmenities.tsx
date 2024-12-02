@@ -11,9 +11,9 @@ interface FloorAmenitiesProps {
 export default function FloorAmenities({ floor }: FloorAmenitiesProps) {
   return (
     <div className="p-6">
-      <h3 className="text-xl font-semibold text-[#15302d] mb-4">
+      {/* <h3 className="text-xl font-semibold text-[#15302d] mb-4">
         {floor.name} Amenities
-      </h3>
+      </h3> */}
       <ul className="space-y-4">
         {floor.amenities.map((amenity, index) => (
           <motion.li

@@ -8,7 +8,7 @@ interface FloorMapTabsProps {
 export default function FloorMapTabs({ activeTab, onTabChange }: FloorMapTabsProps) {
   const tabs = [
     { id: 'overview', label: 'Overview' },
-    { id: 'amenities', label: 'Amenities' },
+    // { id: 'amenities', label: 'Amenities' },
     { id: 'map', label: 'Building Map' }
   ];
 

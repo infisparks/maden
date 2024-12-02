@@ -1,108 +1,133 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import FloorMapTabs from '../floor-map/FloorMapTabs';
-import FloorOverview from '../floor-map/FloorOverview';
-import FloorAmenities from '../floor-map/FloorAmenities';
-import BuildingMap from '../floor-map/BuildingMap';
+// src/components/floor-map/BuildingMap.tsx
 
-const floorPlans = [
+import React from 'react';
+import { motion } from 'framer-motion';
+
+interface Room {
+  id: string;
+  name: string;
+  width: string;
+  height: string;
+  position: string;
+  color: string;
+}
+
+interface BuildingMapProps {
+  imageSrc?: string; // Optional prop
+}
+
+const rooms: Room[] = [
   {
-    id: 'floor-1',
-    name: 'First Floor',
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3',
-    details: 'Living Room • Kitchen • Dining Area • Guest Room',
-    amenities: ['Smart Home System', 'Heated Floors', 'Natural Lighting']
+    id: 'living',
+    name: 'Living Room',
+    width: 'w-1/2',
+    height: 'h-64',
+    position: 'left-0 top-0',
+    color: 'bg-[#3c605b]',
   },
   {
-    id: 'floor-2',
-    name: 'Second Floor',
-    image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3',
-    details: 'Master Suite • 2 Bedrooms • Study Room',
-    amenities: ['Walk-in Closets', 'En-suite Bathrooms', 'Private Balcony']
+    id: 'kitchen',
+    name: 'Kitchen',
+    width: 'w-1/4',
+    height: 'h-40',
+    position: 'right-0 top-0',
+    color: 'bg-[#15302d]',
   },
   {
-    id: 'floor-3',
-    name: 'Rooftop',
-    image: 'https://images.unsplash.com/photo-1600607687710-4bfb87efee86?ixlib=rb-4.0.3',
-    details: 'Garden Terrace • Entertainment Area • Pool',
-    amenities: ['Infinity Pool', 'Outdoor Kitchen', 'Lounge Area']
-  }
+    id: 'dining',
+    name: 'Dining Room',
+    width: 'w-1/4',
+    height: 'h-40',
+    position: 'right-1/4 top-0',
+    color: 'bg-[#b48c2e]',
+  },
+  {
+    id: 'master',
+    name: 'Master Bedroom',
+    width: 'w-1/3',
+    height: 'h-48',
+    position: 'left-0 bottom-0',
+    color: 'bg-[#3c605b]',
+  },
+  {
+    id: 'bath',
+    name: 'Bathroom',
+    width: 'w-1/6',
+    height: 'h-24',
+    position: 'left-1/3 bottom-0',
+    color: 'bg-[#15302d]',
+  },
+  {
+    id: 'study',
+    name: 'Study Room',
+    width: 'w-1/4',
+    height: 'h-48',
+    position: 'right-0 bottom-0',
+    color: 'bg-[#b48c2e]',
+  },
 ];
 
-export default function FloorMap() {
-  const [selectedFloor, setSelectedFloor] = useState(floorPlans[0]);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview');
+const BuildingMap: React.FC<BuildingMapProps> = ({ imageSrc }) => {
+  const [hoveredRoom, setHoveredRoom] = React.useState<string | null>(null);
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl font-bold text-[#15302d] mb-4">
-            Interactive Floor Plans
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore our thoughtfully designed spaces through interactive floor plans
-          </p>
-        </motion.div>
+    <div className="p-8">
+      <div
+        className="relative w-full h-[500px] bg-gray-100 rounded-lg overflow-hidden"
+        style={{
+          backgroundImage: imageSrc ? `url(${imageSrc})` : undefined,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Overlay Image if imageSrc is provided */}
+        {imageSrc && (
+          <img
+            src={imageSrc}
+            alt="Building Map"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ opacity: 0.3 }} // Adjust opacity as needed
+          />
+        )}
 
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="space-y-4">
-            {floorPlans.map((floor) => (
-              <motion.button
-                key={floor.id}
-                onClick={() => setSelectedFloor(floor)}
-                className={`w-full p-4 text-left rounded-lg transition-colors duration-200 ${
-                  selectedFloor.id === floor.id
-                    ? 'bg-[#15302d] text-[#f6db98]'
-                    : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
-                }`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <h3 className="font-semibold">{floor.name}</h3>
-                <p className={`text-sm ${
-                  selectedFloor.id === floor.id ? 'text-[#f6db98]/80' : 'text-gray-600'
-                }`}>
-                  {floor.details}
-                </p>
-              </motion.button>
-            ))}
-          </div>
-
-          <div className="md:col-span-2">
-            <div className="bg-white rounded-lg shadow-xl overflow-hidden">
-              <FloorMapTabs activeTab={activeTab} onTabChange={setActiveTab} />
-              
-              <div className="relative">
-                <motion.div
-                  className="relative"
-                  layoutId="floorplan"
-                  transition={{ duration: 0.5 }}
-                >
-                  {activeTab === 'overview' && (
-                    <FloorOverview
-                      floor={selectedFloor}
-                      isZoomed={isZoomed}
-                      onZoomToggle={() => setIsZoomed(!isZoomed)}
-                    />
-                  )}
-                  {activeTab === 'amenities' && (
-                    <FloorAmenities floor={selectedFloor} />
-                  )}
-                  {activeTab === 'map' && <BuildingMap />}
-                </motion.div>
-              </div>
+        {rooms.map((room) => (
+          <motion.div
+            key={room.id}
+            className={`absolute ${room.width} ${room.height} ${room.position} ${room.color} cursor-pointer
+              transition-colors duration-200`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: hoveredRoom === room.id ? 0.9 : 0.7 }}
+            whileHover={{ opacity: 0.9 }}
+            onHoverStart={() => setHoveredRoom(room.id)}
+            onHoverEnd={() => setHoveredRoom(null)}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-[#f6db98] font-medium text-sm">{room.name}</span>
             </div>
-          </div>
+            {hoveredRoom === room.id && (
+              <motion.div
+                className="absolute inset-0 border-2 border-[#f6db98]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              />
+            )}
+          </motion.div>
+        ))}
+      </div>
+      <div className="mt-6">
+        <h3 className="text-xl font-semibold text-[#15302d] mb-4">Legend</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {rooms.map((room) => (
+            <div key={room.id} className="flex items-center space-x-2">
+              <div className={`w-4 h-4 ${room.color} rounded`} />
+              <span className="text-sm text-gray-700">{room.name}</span>
+            </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default BuildingMap;

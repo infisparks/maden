@@ -63,8 +63,8 @@ export default function ProjectsPage() {
   return (
     <div>
       <PageHeader
-        title="Our Projects"
-        subtitle="Discover our portfolio of exceptional architectural achievements"
+        title="Our Amenities"
+        subtitle="Luxurious amenities for ultimate comfort."
         image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3"
       />
       

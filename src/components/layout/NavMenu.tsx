@@ -8,8 +8,8 @@ interface NavMenuProps {
 export default function NavMenu({ mobile = false }: NavMenuProps) {
   const links = [
    
-    { to: '/floor-plans', label: 'Floor Plans' },
     { to: '/about', label: 'About Us' },
+    { to: '/floor-plans', label: 'Floor Plans' },
     { to: '/gallery', label: 'Gallery' },
     { to: '/contact', label: 'Contact' },
   ];

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react';
 import IMAGE from "./../../maden.png"
 
 export default function Footer() {
@@ -11,17 +11,16 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            {/* Replace Text with Image */}
+            {/* Company Logo */}
             <Link to="/" className="mb-4 flex items-center">
               <img
-                src={IMAGE} // Path relative to the public folder
+                src={IMAGE}
                 alt="MADEN Logo"
                 style={{ height: '50px', width: 'auto' }}
-                // className="h-12 w-auto"
               />
             </Link>
             <p className="text-[#f6db98]/80">
-              Transforming spaces into timeless masterpieces since 1970
+            Luxury construction, innovative design, 30+ years of excellence, Maden Multicorp.
             </p>
           </div>
           
@@ -29,24 +28,28 @@ export default function Footer() {
             <h4 className="text-lg font-semibold text-[#f6db98] mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li><Link to="/about" className="text-[#f6db98]/80 hover:text-[#f6db98]">About Us</Link></li>
-              <li><Link to="/projects" className="text-[#f6db98]/80 hover:text-[#f6db98]">Projects</Link></li>
+              <li><Link to="/Floor Plans" className="text-[#f6db98]/80 hover:text-[#f6db98]">Projects</Link></li>
               <li><Link to="/gallery" className="text-[#f6db98]/80 hover:text-[#f6db98]">Gallery</Link></li>
               <li><Link to="/contact" className="text-[#f6db98]/80 hover:text-[#f6db98]">Contact</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold text-[#f6db98] mb-4">Newsletter</h4>
-            <form className="space-y-4">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="w-full px-4 py-2 bg-white/10 text-[#f6db98] placeholder-[#f6db98]/50 border border-[#f6db98]/20 rounded focus:outline-none focus:border-[#f6db98]"
-              />
-              <button className="w-full px-4 py-2 bg-[#b48c2e] text-white rounded hover:bg-[#f6db98] hover:text-[#15302d] transition-colors duration-200">
-                Subscribe
-              </button>
-            </form>
+            <h4 className="text-lg font-semibold text-[#f6db98] mb-4">Contact Information</h4>
+            <ul className="space-y-4">
+              <li className="flex items-center text-[#f6db98]/80">
+                <MapPin className="mr-2" size={20} />
+                1234 Street Name, City, State, ZIP
+              </li>
+              <li className="flex items-center text-[#f6db98]/80">
+                <Phone className="mr-2" size={20} />
+                (123) 456-7890
+              </li>
+              <li className="flex items-center text-[#f6db98]/80">
+                <Mail className="mr-2" size={20} />
+                info@madenmulticorp.com
+              </li>
+            </ul>
           </div>
           
           <div>
