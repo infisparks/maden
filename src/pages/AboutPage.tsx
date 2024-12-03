@@ -57,7 +57,7 @@ src={building}                alt="Our Office"
         {/* Legacy Section */}
         <motion.section 
           className="py-20 bg-[#15302d]"
-          style={{ padding: '100px' }}
+          style={{ padding: '10px' }}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
@@ -99,7 +99,7 @@ src={building}                alt="Our Office"
             {/* Feature Card 1 */}
             <div className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <h3 className="text-xl font-semibold text-[#15302d] mb-2">Proven Legacy</h3>
-              <p className="text-gray-600">Over three decades of success in the construction industry.</p>
+              <p className="text-gray-600">Over seven years of success in the construction industry.</p>
             </div>
             {/* Feature Card 2 */}
             <div className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">

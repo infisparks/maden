@@ -1,20 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import PageHeader from '../components/shared/PageHeader';
 import FloorMap from '../components/home/FloorMap';
 import m1 from './../icon/m1.png'; // Adjust the path based on your project structure
 import m2 from './../icon/m2.png'; // Adjust the path based on your project structure
 
 const FloorMapPage: React.FC = () => {
-  const [hoveredImage, setHoveredImage] = useState<null | number>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<string>('');
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-
-  const openModal = (imageSrc: string) => {
-    setSelectedImage(imageSrc);
-    setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
+  const navigate = useNavigate(); // Hook to handle page redirection
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -86,6 +81,7 @@ const FloorMapPage: React.FC = () => {
     maxWidth: '500px',
     boxSizing: 'border-box',
     cursor: 'pointer',
+    position: 'relative',
   };
 
   const mapImageStyle: React.CSSProperties = {
@@ -93,67 +89,16 @@ const FloorMapPage: React.FC = () => {
     height: 'auto',
     borderRadius: '4px',
     objectFit: 'cover',
-    transition: 'transform 0.3s ease',
+    filter: 'blur(5px)', // Apply blur effect by default
   };
 
-  const mapImageHoverStyle: React.CSSProperties = {
-    transform: 'scale(1.05)',
-  };
-
-  const modalOverlayStyle: React.CSSProperties = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100vw',
-    height: '100vh',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1000,
-    overflow: 'auto',
-  };
-
-  const modalContentStyle: React.CSSProperties = {
-    position: 'relative',
-    maxWidth: '90%',
-    maxHeight: '90%',
-    width: 'auto',
-    height: 'auto',
-    background: 'transparent',
-    border: 'none',
-    outline: 'none',
-  };
-
-  const modalImageStyle: React.CSSProperties = {
-    width: '100%',
-    height: 'auto',
-    maxHeight: '90vh',
-    objectFit: 'contain',
-    borderRadius: '8px',
-  };
-
-  const closeButtonStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: '-10px',
-    right: '-10px',
-    background: '#fff',
-    border: 'none',
-    borderRadius: '50%',
-    width: '30px',
-    height: '30px',
-    fontSize: '1.5rem',
-    cursor: 'pointer',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+  // Handle redirect to the contact form page
+  const handleViewImageClick = () => {
+    navigate('/contact'); // Redirect to the contact page
   };
 
   return (
-
     <div style={containerStyle}>
-
-
       <PageHeader
         title="Projects"
         subtitle="Explore our thoughtfully designed spaces"
@@ -161,59 +106,77 @@ const FloorMapPage: React.FC = () => {
       />
       <div style={innerContainerStyle}>
         <FloorMap />
-
-        {/* Building Map Section */}
         <section style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Building Map</h2>
           <div style={mapImagesContainerStyle}>
             {/* First Map Image */}
             <div
               style={mapImageWrapperStyle}
-              onMouseEnter={() => setHoveredImage(1)}
-              onMouseLeave={() => setHoveredImage(null)}
-              onClick={() => openModal(m1)}
+              onClick={handleViewImageClick} // Redirect on click
               aria-label="View Building Map 1 in full screen"
               role="button"
               tabIndex={0}
               onKeyPress={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  openModal(m1);
+                  handleViewImageClick(); // Redirect on Enter/Space key press
                 }
               }}
             >
               <img
                 src={m1}
                 alt="Building Map 1"
-                style={{
-                  ...mapImageStyle,
-                  ...(hoveredImage === 1 ? mapImageHoverStyle : {}),
-                }}
+                style={mapImageStyle}
               />
+              <button
+                onClick={handleViewImageClick} // Redirect when the button is clicked
+                style={{
+                  position: 'absolute',
+                  bottom: '10px',
+                  right: '10px',
+                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                  color: '#fff',
+                  padding: '5px 10px',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                }}
+              >
+                View Image
+              </button>
             </div>
 
             {/* Second Map Image */}
             <div
               style={mapImageWrapperStyle}
-              onMouseEnter={() => setHoveredImage(2)}
-              onMouseLeave={() => setHoveredImage(null)}
-              onClick={() => openModal(m2)}
+              onClick={handleViewImageClick} // Redirect on click
               aria-label="View Building Map 2 in full screen"
               role="button"
               tabIndex={0}
               onKeyPress={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  openModal(m2);
+                  handleViewImageClick(); // Redirect on Enter/Space key press
                 }
               }}
             >
               <img
                 src={m2}
                 alt="Building Map 2"
-                style={{
-                  ...mapImageStyle,
-                  ...(hoveredImage === 2 ? mapImageHoverStyle : {}),
-                }}
+                style={mapImageStyle}
               />
+              <button
+                onClick={handleViewImageClick} // Redirect when the button is clicked
+                style={{
+                  position: 'absolute',
+                  bottom: '10px',
+                  right: '10px',
+                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                  color: '#fff',
+                  padding: '5px 10px',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                }}
+              >
+                View Image
+              </button>
             </div>
           </div>
         </section>
@@ -221,17 +184,58 @@ const FloorMapPage: React.FC = () => {
 
       {/* Modal Implementation */}
       {isModalOpen && (
-        <div style={modalOverlayStyle} onClick={closeModal} aria-modal="true" role="dialog">
-          <div style={modalContentStyle} onClick={(e) => e.stopPropagation()}>
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+            overflow: 'auto',
+          }}
+          onClick={closeModal}
+          aria-modal="true"
+          role="dialog"
+        >
+          <div style={{ position: 'relative' }} onClick={(e) => e.stopPropagation()}>
             <button
-              style={closeButtonStyle}
+              style={{
+                position: 'absolute',
+                top: '-10px',
+                right: '-10px',
+                background: '#fff',
+                border: 'none',
+                borderRadius: '50%',
+                width: '30px',
+                height: '30px',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
               onClick={closeModal}
               ref={closeButtonRef}
               aria-label="Close Modal"
             >
               &times;
             </button>
-            <img src={selectedImage} alt="Full Screen Building Map" style={modalImageStyle} />
+            <img
+              src={selectedImage}
+              alt="Full Screen Building Map"
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: '90vh',
+                objectFit: 'contain',
+                borderRadius: '8px',
+              }}
+            />
           </div>
         </div>
       )}

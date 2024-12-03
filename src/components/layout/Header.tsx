@@ -17,7 +17,7 @@ export default function Header() {
             <img
               src={madenLogo}
               alt="MADEN Logo"
-              style={{ height: '40px', width: 'auto' }}
+              style={{ height: '60px', width: 'auto' }}
               // className="h-8 w-auto" // Adjust height as needed
             />
           </div>

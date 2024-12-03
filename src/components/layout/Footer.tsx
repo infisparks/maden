@@ -55,18 +55,18 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold text-[#f6db98] mb-4">Follow Us</h4>
             <div className="flex space-x-4">
-              <a href="#" className="text-[#f6db98] hover:text-[#b48c2e]">
+              <a href="https://www.facebook.com/profile.php?id=61568815327916" className="text-[#f6db98] hover:text-[#b48c2e]">
                 <Facebook size={24} />
               </a>
-              <a href="#" className="text-[#f6db98] hover:text-[#b48c2e]">
+              {/* <a href="#" className="text-[#f6db98] hover:text-[#b48c2e]">
                 <Twitter size={24} />
-              </a>
-              <a href="#" className="text-[#f6db98] hover:text-[#b48c2e]">
+              </a> */}
+              <a href="https://www.instagram.com/madenmulticorp_mumbai" className="text-[#f6db98] hover:text-[#b48c2e]">
                 <Instagram size={24} />
               </a>
-              <a href="#" className="text-[#f6db98] hover:text-[#b48c2e]">
+              {/* <a href="#" className="text-[#f6db98] hover:text-[#b48c2e]">
                 <Linkedin size={24} />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

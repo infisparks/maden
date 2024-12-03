@@ -195,9 +195,9 @@ export default function ContactPage() {
             <div className="mt-8">
               <h3 className="text-xl font-semibold text-[#15302d] mb-4">Office Hours</h3>
               <div className="space-y-2">
-                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                <p>Saturday: By appointment only</p>
-                <p>Sunday: Closed</p>
+                <p>Sunday- Saturday: 9:00 AM - 6:00 PM</p>
+                <p>Friday By appointment only</p>
+                {/* <p>Sunday: Closed</p> */}
               </div>
             </div>
           </div>

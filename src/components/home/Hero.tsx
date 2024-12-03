@@ -27,8 +27,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-             A Legacy of Excellence, 
-              <span className="block">A Vision for the Future</span>
+             The dream of luxury 
+              <span className="block"></span>
             </motion.h1>
             <motion.p 
               className="text-[#f6db98]/90 text-xl md:text-2xl mb-8"
@@ -36,7 +36,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-            Luxury construction, innovative design, 30+ years of excellence, Maden Multicorp.
+           Over seven years of success in the construction industry
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

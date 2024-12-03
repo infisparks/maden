@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PageHeader from '../components/shared/PageHeader';
 import AnimatedSection from '../components/shared/AnimatedSection';
@@ -8,6 +8,40 @@ export default function ProjectsPage() {
   const { id } = useParams();
   const project = id ? projects.find(p => p.id === id) : null;
 
+  // For the dot navigation effect
+  const [currentSection, setCurrentSection] = useState(0);
+
+  const handleScroll = () => {
+    const sections = document.querySelectorAll('.section');
+    let currentIndex = 0;
+    sections.forEach((section, index) => {
+      if (section instanceof HTMLElement) { // Check if it's an HTMLElement
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          currentIndex = index;
+        }
+      }
+    });
+    setCurrentSection(currentIndex);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const scrollToSection = (index: number) => {
+    const section = document.querySelector(`#section-${index}`);
+    if (section instanceof HTMLElement) {
+      window.scrollTo({
+        top: section.offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   if (project) {
     return (
       <div>
@@ -16,9 +50,8 @@ export default function ProjectsPage() {
           subtitle={project.category}
           image={project.image}
         />
-        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <AnimatedSection className="grid md:grid-cols-2 gap-12">
+          <AnimatedSection className="grid md:grid-cols-2 gap-12 section">
             <div>
               <h2 className="text-2xl font-bold text-[#15302d] mb-6">Project Details</h2>
               <div className="space-y-4">
@@ -56,6 +89,16 @@ export default function ProjectsPage() {
             </div>
           </AnimatedSection>
         </div>
+
+        <div className="flex justify-center space-x-4 py-6">
+          {projects.map((_, index: number) => (
+            <button
+              key={index}
+              className={`w-3 h-3 rounded-full ${currentSection === index ? 'bg-[#15302d]' : 'bg-gray-300'}`}
+              onClick={() => scrollToSection(index)}
+            />
+          ))}
+        </div>
       </div>
     );
   }
@@ -70,8 +113,8 @@ export default function ProjectsPage() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid md:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <AnimatedSection key={project.id}>
+          {projects.map((project, index: number) => (
+            <AnimatedSection key={project.id} className="section">
               <a
                 href={`/projects/${project.id}`}
                 className="group block relative overflow-hidden rounded-lg"
@@ -93,6 +136,16 @@ export default function ProjectsPage() {
             </AnimatedSection>
           ))}
         </div>
+      </div>
+
+      <div className="flex justify-center space-x-4 py-6">
+        {projects.map((_, index: number) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full ${currentSection === index ? 'bg-[#15302d]' : 'bg-gray-300'}`}
+            onClick={() => scrollToSection(index)}
+          />
+        ))}
       </div>
     </div>
   );
