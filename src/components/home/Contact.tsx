@@ -145,16 +145,17 @@ export default function Contact() {
             <div className="space-y-6">
               <div className="flex items-center">
                 <Mail className="w-6 h-6 text-[#f6db98] mr-4" />
-                <span className="text-[#f6db98]">contact@maden.com</span>
+                <span className="text-[#f6db98]">madenmulticorp@gmail.com</span>
               </div>
               <div className="flex items-center">
                 <Phone className="w-6 h-6 text-[#f6db98] mr-4" />
-                <span className="text-[#f6db98]">+1 (555) 123-4567</span>
+                <span className="text-[#f6db98]">+91 78697 86492</span>
               </div>
               <div className="flex items-center">
                 <MapPin className="w-6 h-6 text-[#f6db98] mr-4" />
                 <span className="text-[#f6db98]">
-                  123 Luxury Avenue, Suite 100<br />New York, NY 10001
+                B-906, Shelton Sapphire, Sec-15, plot
+                no. 18 & 19, <br />CBD Belapur, Navi Mumbai, 400614.
                 </span>
               </div>
             </div>
