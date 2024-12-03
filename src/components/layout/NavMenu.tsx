@@ -9,7 +9,7 @@ export default function NavMenu({ mobile = false }: NavMenuProps) {
   const links = [
    
     { to: '/about', label: 'About Us' },
-    { to: '/floor-plans', label: 'Floor Plans' },
+    { to: '/floor-plans', label: 'Projects' },
     { to: '/gallery', label: 'Gallery' },
     { to: '/contact', label: 'Contact' },
   ];

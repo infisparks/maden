@@ -150,9 +150,12 @@ const FloorMapPage: React.FC = () => {
   };
 
   return (
+
     <div style={containerStyle}>
+
+
       <PageHeader
-        title="Floor Plans"
+        title="Projects"
         subtitle="Explore our thoughtfully designed spaces"
         image="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3"
       />

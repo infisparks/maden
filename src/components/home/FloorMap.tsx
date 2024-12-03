@@ -4,6 +4,7 @@ import FloorMapTabs from '../floor-map/FloorMapTabs';
 import FloorOverview from '../floor-map/FloorOverview';
 import FloorAmenities from '../floor-map/FloorAmenities';
 import BuildingMap from '../floor-map/BuildingMap';
+
 import second from './../../icon/2.jpg'
 import third from './../../icon/1.jpg'
 
@@ -29,13 +30,7 @@ const floorPlans = [
     details: 'Garden Terrace • Entertainment Area • Pool',
     amenities: ['Infinity Pool', 'Outdoor Kitchen', 'Lounge Area']
   },
-  {
-    id: 'floor-3',
-    name: 'Rooftop',
-    image: third,
-    details: 'Garden Terrace • Entertainment Area • Pool',
-    amenities: ['Infinity Pool', 'Outdoor Kitchen', 'Lounge Area']
-  }
+
   
 ];
 
@@ -46,6 +41,7 @@ export default function FloorMap() {
 
   return (
     <section className="py-20 bg-white">
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -99,8 +95,6 @@ export default function FloorMap() {
                   {activeTab === 'overview' && (
                     <FloorOverview
                       floor={selectedFloor}
-                      isZoomed={isZoomed}
-                      onZoomToggle={() => setIsZoomed(!isZoomed)}
                     />
                   )}
                   {/* {activeTab === 'amenities' && (

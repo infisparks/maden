@@ -8,6 +8,7 @@ import AboutPage from './pages/AboutPage';
 import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 import FloorMapPage from './pages/FloorMapPage';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="/floor-plans" element={<FloorMapPage />} />
           </Routes>
         </main>
