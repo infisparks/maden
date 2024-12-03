@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <header className="fixed w-full bg-[#15302d]/95 backdrop-blur-sm z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Replace Text with Image */}
           <div className="flex-shrink-0">

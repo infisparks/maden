@@ -39,15 +39,16 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center text-[#f6db98]/80">
                 <MapPin className="mr-2" size={20} />
-                1234 Street Name, City, State, ZIP
+           CBD Belapur, Navi Mumbai,
+400614.
               </li>
               <li className="flex items-center text-[#f6db98]/80">
                 <Phone className="mr-2" size={20} />
-                (123) 456-7890
+                +91 78697 86492
               </li>
               <li className="flex items-center text-[#f6db98]/80">
                 <Mail className="mr-2" size={20} />
-                info@madenmulticorp.com
+                madenmulticorp@gmail.com
               </li>
             </ul>
           </div>

@@ -1,26 +1,57 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, push } from 'firebase/database';
 import PageHeader from '../components/shared/PageHeader';
 import FloorMap from '../components/home/FloorMap';
-import m1 from './../icon/m1.png'; // Adjust the path based on your project structure
-import m2 from './../icon/m2.png'; // Adjust the path based on your project structure
+import m1 from './../icon/m1.png';
+import m2 from './../icon/m2.png';
+import Projects from '../components/Projects';
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAay8M_58K8RXHCfzmM2Gdw7dEgGmwz1sw",
+  authDomain: "maden-infispark.firebaseapp.com",
+  projectId: "maden-infispark",
+  storageBucket: "maden-infispark.appspot.com",
+  messagingSenderId: "1047210661059",
+  appId: "1:1047210661059:web:4a372d286c5d0406fc3e76",
+  measurementId: "G-FLCGBKNL0V"
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
 const FloorMapPage: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<string>('');
+  const [isContactFormOpen, setIsContactFormOpen] = useState<boolean>(false);
+  const [unblurredImages, setUnblurredImages] = useState<boolean[]>([false, false]); // Track both images
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const navigate = useNavigate(); // Hook to handle page redirection
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage('');
+  useEffect(() => {
+    const unblurred = localStorage.getItem('unblurredImages');
+    if (unblurred) {
+      setUnblurredImages(JSON.parse(unblurred));
+    }
+  }, []);
+
+  const openContactForm = () => {
+    setIsContactFormOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeContactForm = () => {
+    setIsContactFormOpen(false);
     document.body.style.overflow = 'auto';
   };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isModalOpen) {
-        closeModal();
+      if (event.key === 'Escape' && isContactFormOpen) {
+        closeContactForm();
       }
     };
 
@@ -29,13 +60,13 @@ const FloorMapPage: React.FC = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isModalOpen]);
+  }, [isContactFormOpen]);
 
   useEffect(() => {
-    if (isModalOpen && closeButtonRef.current) {
+    if (isContactFormOpen && closeButtonRef.current) {
       closeButtonRef.current.focus();
     }
-  }, [isModalOpen]);
+  }, [isContactFormOpen]);
 
   const containerStyle: React.CSSProperties = {
     display: 'flex',
@@ -84,17 +115,58 @@ const FloorMapPage: React.FC = () => {
     position: 'relative',
   };
 
-  const mapImageStyle: React.CSSProperties = {
+  const mapImageStyle = (imageIndex: number): React.CSSProperties => ({
     width: '100%',
     height: 'auto',
     borderRadius: '4px',
     objectFit: 'cover',
-    filter: 'blur(5px)', // Apply blur effect by default
+    filter: unblurredImages[imageIndex] ? 'none' : 'blur(5px)',
+  });
+
+  const handleViewImageClick = (imageIndex: number) => {
+    if (unblurredImages[imageIndex]) {
+      // Image already unblurred
+    } else {
+      openContactForm();
+    }
   };
 
-  // Handle redirect to the contact form page
-  const handleViewImageClick = () => {
-    navigate('/contact'); // Redirect to the contact page
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const contactsRef = ref(database, 'contacts');
+      await push(contactsRef, {
+        name: formData.name,
+        email: formData.email || 'No email provided',
+        phone: formData.phone,
+        message: formData.message,
+        timestamp: Date.now(),
+      });
+
+      // Set both images to unblurred and update the state
+      const updatedUnblurredImages = [true, true];
+      setUnblurredImages(updatedUnblurredImages);
+      localStorage.setItem('unblurredImages', JSON.stringify(updatedUnblurredImages));
+
+      closeContactForm();
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error("Error writing to Firebase:", error);
+    }
   };
 
   return (
@@ -104,138 +176,230 @@ const FloorMapPage: React.FC = () => {
         subtitle="Explore our thoughtfully designed spaces"
         image="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3"
       />
+      <Projects />
       <div style={innerContainerStyle}>
-        <FloorMap />
+        <FloorMap unblurredImages={[]} onViewPrice={function (): void {
+          throw new Error('Function not implemented.');
+        } } />
         <section style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Building Map</h2>
           <div style={mapImagesContainerStyle}>
             {/* First Map Image */}
             <div
               style={mapImageWrapperStyle}
-              onClick={handleViewImageClick} // Redirect on click
-              aria-label="View Building Map 1 in full screen"
+              onClick={() => handleViewImageClick(0)}
+              aria-label="View Building Map 1"
               role="button"
               tabIndex={0}
               onKeyPress={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  handleViewImageClick(); // Redirect on Enter/Space key press
+                  handleViewImageClick(0);
                 }
               }}
             >
               <img
                 src={m1}
                 alt="Building Map 1"
-                style={mapImageStyle}
+                style={mapImageStyle(0)}
               />
-              <button
-                onClick={handleViewImageClick} // Redirect when the button is clicked
-                style={{
-                  position: 'absolute',
-                  bottom: '10px',
-                  right: '10px',
-                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                  color: '#fff',
-                  padding: '5px 10px',
-                  borderRadius: '5px',
-                  cursor: 'pointer',
-                }}
-              >
-                View Image
-              </button>
+              {!unblurredImages[0] && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleViewImageClick(0);
+                  }}
+                  style={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '10px',
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    color: '#fff',
+                    padding: '5px 10px',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  View Image
+                </button>
+              )}
             </div>
 
             {/* Second Map Image */}
             <div
               style={mapImageWrapperStyle}
-              onClick={handleViewImageClick} // Redirect on click
-              aria-label="View Building Map 2 in full screen"
+              onClick={() => handleViewImageClick(1)}
+              aria-label="View Building Map 2"
               role="button"
               tabIndex={0}
               onKeyPress={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  handleViewImageClick(); // Redirect on Enter/Space key press
+                  handleViewImageClick(1);
                 }
               }}
             >
               <img
                 src={m2}
                 alt="Building Map 2"
-                style={mapImageStyle}
+                style={mapImageStyle(1)}
               />
-              <button
-                onClick={handleViewImageClick} // Redirect when the button is clicked
-                style={{
-                  position: 'absolute',
-                  bottom: '10px',
-                  right: '10px',
-                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                  color: '#fff',
-                  padding: '5px 10px',
-                  borderRadius: '5px',
-                  cursor: 'pointer',
-                }}
-              >
-                View Image
-              </button>
+              {!unblurredImages[1] && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleViewImageClick(1);
+                  }}
+                  style={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '10px',
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    color: '#fff',
+                    padding: '5px 10px',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  View Image
+                </button>
+              )}
             </div>
           </div>
         </section>
       </div>
 
-      {/* Modal Implementation */}
-      {isModalOpen && (
+      {/* Contact Form Modal */}
+      {isContactFormOpen && (
         <div
           style={{
             position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
             display: 'flex',
-            justifyContent: 'center',
             alignItems: 'center',
+            justifyContent: 'center',
             zIndex: 1000,
-            overflow: 'auto',
           }}
-          onClick={closeModal}
+          onClick={closeContactForm}
           aria-modal="true"
           role="dialog"
         >
-          <div style={{ position: 'relative' }} onClick={(e) => e.stopPropagation()}>
+          <div
+            style={{
+              backgroundColor: '#fff',
+              padding: '40px 30px',
+              borderRadius: '10px',
+              maxWidth: '600px',
+              width: '100%',
+              position: 'relative',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
-              style={{
-                position: 'absolute',
-                top: '-10px',
-                right: '-10px',
-                background: '#fff',
-                border: 'none',
-                borderRadius: '50%',
-                width: '30px',
-                height: '30px',
-                fontSize: '1.5rem',
-                cursor: 'pointer',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              onClick={closeModal}
+              onClick={closeContactForm}
               ref={closeButtonRef}
               aria-label="Close Modal"
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                background: 'transparent',
+                border: 'none',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+              }}
             >
               &times;
             </button>
-            <img
-              src={selectedImage}
-              alt="Full Screen Building Map"
-              style={{
-                width: '100%',
-                height: 'auto',
-                maxHeight: '90vh',
-                objectFit: 'contain',
-                borderRadius: '8px',
-              }}
-            />
+            <h2 style={{ fontSize: '1.75rem', marginBottom: '20px', textAlign: 'center' }}>Contact Us</h2>
+            <form onSubmit={handleSubmit}>
+              <div style={{ marginBottom: '15px' }}>
+                <label htmlFor="name" style={{ display: 'block', marginBottom: '5px' }}>Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    borderRadius: '8px',
+                    border: '1px solid #ccc',
+                    boxSizing: 'border-box',
+                  }}
+                />
+              </div>
+              <div style={{ marginBottom: '15px' }}>
+                <label htmlFor="email" style={{ display: 'block', marginBottom: '5px' }}>Email (Optional)</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    borderRadius: '8px',
+                    border: '1px solid #ccc',
+                    boxSizing: 'border-box',
+                  }}
+                />
+              </div>
+              <div style={{ marginBottom: '15px' }}>
+                <label htmlFor="phone" style={{ display: 'block', marginBottom: '5px' }}>Phone Number</label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    borderRadius: '8px',
+                    border: '1px solid #ccc',
+                    boxSizing: 'border-box',
+                  }}
+                />
+              </div>
+              <div style={{ marginBottom: '15px' }}>
+                <label htmlFor="message" style={{ display: 'block', marginBottom: '5px' }}>Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={4}
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    borderRadius: '8px',
+                    border: '1px solid #ccc',
+                    boxSizing: 'border-box',
+                  }}
+                />
+              </div>
+              <button
+                type="submit"
+                style={{
+                  width: '100%',
+                  padding: '12px',
+                  backgroundColor: '#b48c2e',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                }}
+              >
+                Submit
+              </button>
+            </form>
           </div>
         </div>
       )}

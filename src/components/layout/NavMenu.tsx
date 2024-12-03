@@ -15,7 +15,7 @@ export default function NavMenu({ mobile = false }: NavMenuProps) {
   ];
 
   const baseStyles = 'text-[#f6db98] hover:text-[#b48c2e] transition-colors duration-200';
-  const mobileStyles = 'block px-3 py-2 text-base';
+  const mobileStyles = 'block px-2 py-2 text-base';
   const desktopStyles = 'text-sm font-medium';
 
   return (

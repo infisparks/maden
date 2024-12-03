@@ -27,7 +27,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-             The dream of luxury 
+             The Dream of Luxury 
               <span className="block"></span>
             </motion.h1>
             <motion.p 
@@ -61,8 +61,8 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1 }}
       >
-        <div className="w-6 h-10 border-2 border-[#f6db98] rounded-full p-1">
-          <div className="w-1 h-2 bg-[#f6db98] rounded-full animate-bounce mx-auto" />
+        <div >
+          <div  />
         </div>
       </motion.div>
     </div>

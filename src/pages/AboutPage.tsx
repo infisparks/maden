@@ -4,7 +4,7 @@
 import { motion } from 'framer-motion';
 import PageHeader from '../components/shared/PageHeader';
 // import { awards } from '../data/awards';
-import building from "../building.png"
+import building from "../icon/logo.jpeg"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },

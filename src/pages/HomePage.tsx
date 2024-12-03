@@ -5,7 +5,7 @@ import Philosophy from '../components/home/Philosophy';
 import Portfolio from '../components/home/Portfolio';
 import FloorMap from '../components/home/FloorMap';
 import Contact from '../components/home/Contact';
-
+import Projects from '../components/Projects';
 export default function HomePage() {
   return (
     <motion.div
@@ -16,8 +16,9 @@ export default function HomePage() {
     >
       <Hero />
       <Philosophy />
-      <Portfolio />
-      <FloorMap />
+      <Projects />
+      {/* <Portfolio /> */}
+      {/* <FloorMap /> */}
       <Contact />
     </motion.div>
   );

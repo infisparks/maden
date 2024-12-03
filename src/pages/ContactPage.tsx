@@ -25,6 +25,7 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   });
 
@@ -34,6 +35,7 @@ export default function ContactPage() {
     message: '',
     isSuccess: false
   });
+
   // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -42,6 +44,7 @@ export default function ContactPage() {
       [name]: value
     }));
   };
+
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent page refresh
@@ -53,7 +56,8 @@ export default function ContactPage() {
       // Push new contact data
       await push(contactsRef, {
         name: formData.name,
-        email: formData.email,
+        email: formData.email || 'No email provided',
+        phone: formData.phone,
         message: formData.message,
         timestamp: Date.now()
       });
@@ -69,6 +73,7 @@ export default function ContactPage() {
       setFormData({
         name: '',
         email: '',
+        phone: '',
         message: ''
       });
     } catch (error) {
@@ -122,17 +127,33 @@ export default function ContactPage() {
                 />
               </div>
               
-              {/* Email Field */}
+              {/* Email Field (Optional) */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
+                  Email (Optional)
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="Your Email"
+                  placeholder="Your Email (Optional)"
                   value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b48c2e] focus:border-transparent"
+                />
+              </div>
+
+              {/* Phone Number Field (Required) */}
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  placeholder="Your Phone Number"
+                  value={formData.phone}
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b48c2e] focus:border-transparent"
@@ -173,20 +194,20 @@ export default function ContactPage() {
               {/* Email */}
               <div className="flex items-center">
                 <Mail className="w-6 h-6 text-[#b48c2e] mr-4" />
-                <span>contact@maden.com</span>
+                <span>madenmulticorp@gmail.com</span>
               </div>
               
               {/* Phone */}
               <div className="flex items-center">
                 <Phone className="w-6 h-6 text-[#b48c2e] mr-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 78697 86492</span>
               </div>
               
               {/* Address */}
               <div className="flex items-center">
                 <MapPin className="w-6 h-6 text-[#b48c2e] mr-4" />
                 <span>
-                  123 Luxury Avenue, Suite 100<br />New York, NY 10001
+                B-906, Shelton Sapphire, Sec-15, plot <br />no. 18 & 19, CBD Belapur, Navi Mumbai, <br /> 400614.
                 </span>
               </div>
             </div>
@@ -197,7 +218,6 @@ export default function ContactPage() {
               <div className="space-y-2">
                 <p>Sunday- Saturday: 9:00 AM - 6:00 PM</p>
                 <p>Friday By appointment only</p>
-                {/* <p>Sunday: Closed</p> */}
               </div>
             </div>
           </div>
