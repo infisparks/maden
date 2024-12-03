@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';  // Import the useNavigate hook
-import building from '../icon/building.webp';
+import building from '../icon/building.png';
 
 const ProjectComponent = () => {
   const navigate = useNavigate();  // Initialize the useNavigate hook
