@@ -12,7 +12,7 @@ import fouth from './../../icon/4.jpg';
 import fifth from './../../icon/5.jpeg';
 import e1 from './../../icon/nm1.jpeg';
 import e2 from './../../icon/nm2.jpeg';
-
+import kg from './../../icon/kaj.png';
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAay8M_58K8RXHCfzmM2Gdw7dEgGmwz1sw",
@@ -40,7 +40,7 @@ const floorPlans = [
     id: 'floor-2',
     name: 'Amenities',
     images: [
-      { src: fifth, details: '⁠Kajaria CP Fittings' },
+      { src: kg, details: '⁠Kajaria CP Fittings' },
       { src: third, details: 'Modular kitchens' },
       { src: first, details: '⁠Highly Trained Security' },
       { src: second, details: 'Sofa-cum- bed' },
