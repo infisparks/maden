@@ -70,15 +70,19 @@ const FloorMapPage: React.FC = () => {
         image={building}
       /> */}
       
-      <section className="flex flex-col lg:flex-row justify-center items-center min-h-screen bg-[#18322F] p-6 md:p-12">
+      <section id='top' className="flex pt-20 flex-col lg:flex-row justify-center items-center min-h-screen bg-[#18322F] p-6 md:p-12">
       {/* Text Content */}
-      <div className="text-white lg:w-1/2 lg:pr-8 mb-8 lg:mb-0">
+      <div className=" text-white lg:w-1/2 lg:pr-8 mb-8 lg:mb-0">
         <h1 className="text-3xl sm:text-4xl font-bold text-[#CFC29A] mb-4">
           Nova 1
         </h1>
-        <p className="text-base sm:text-lg leading-relaxed">
-          The Nova, crafted by Maden Multicorp LLP, is a premier residential project in Taloja, Navi Mumbai, blending modern aesthetics with innovative design. It offers studio apartments and 1 BHK homes tailored for contemporary living, featuring modular kitchens, sofa-cum-beds, double-height luxury lobbies, and 24/7 security. Strategically located near the Mumbai-Pune Expressway, it provides seamless connectivity to essential amenities like schools, hospitals, and business hubs. The Nova redefines urban living, offering luxury, practicality, and convenience in one space.
-        </p>
+        <p className="pt-4 text-base sm:text-lg leading-relaxed">
+        The Nova, developed by Maden Multicorp LLP, is a flagship residential project that redefines urban luxury in the heart of Taloja, Navi Mumbai. Combining modern aesthetics with thoughtful functionality, it offers a range of studio apartments and 1 BHK homes designed to meet the needs of contemporary homeowners. Each home is equipped with premium features such as modular kitchens, sofa-cum-beds for optimized living spaces, vitrified tiles, and Kajaria CP fittings for durability and elegance. 
+        <br /><br />
+         Residents are welcomed by a grand double-height luxury lobby and enjoy 24/7 CCTV surveillance, branded lifts, and highly trained security staff for peace of mind.  
+<br />
+
+      </p>
       </div>
 
       {/* Image */}
