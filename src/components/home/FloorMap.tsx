@@ -13,6 +13,7 @@ import fifth from './../../icon/5.jpeg';
 import e1 from './../../icon/nm1.jpeg';
 import e2 from './../../icon/nm2.jpeg';
 import kg from './../../icon/kaj.png';
+
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAay8M_58K8RXHCfzmM2Gdw7dEgGmwz1sw",
@@ -43,8 +44,8 @@ const floorPlans = [
       { src: kg, details: '⁠Kajaria CP Fittings' },
       { src: third, details: 'Modular kitchens' },
       { src: first, details: '⁠Highly Trained Security' },
-      { src: second, details: 'Sofa-cum- bed' },
-      { src: fouth, details: 'Double Height luxury Lobby' },
+      { src: second, details: 'Sofa-cum-bed' },
+      { src: fouth, details: 'Double Height Luxury Lobby' },
     ],
   },
   {
@@ -110,6 +111,7 @@ const FloorMap = () => {
   const handleViewPrice = () => {
     setIsContactFormOpen(true);
   };
+
   // Handle contact form submission
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -242,9 +244,12 @@ const FloorMap = () => {
                     src={selectedFloor.images[currentImageIndex].src}
                     alt={`${selectedFloor.name} ${currentImageIndex + 1}`}
                     className={`w-full rounded-lg ${
-                      selectedFloor.id === 'floor-1' ? 'object-contain' : 'h-80 object-cover'
+                      selectedFloor.id === 'floor-1' 
+                        ? 'object-contain' 
+                        : 'object-contain' // Changed from 'object-cover' to 'object-contain'
                     }`}
                   />
+                  {/* Removed fixed height for better responsiveness */}
                   {/* Navigation Buttons */}
                   <button
                     onClick={handlePrevImage}
@@ -265,7 +270,7 @@ const FloorMap = () => {
                       key={index}
                       src={img.src}
                       alt={`Thumbnail ${index + 1}`}
-                      className={`w-16 h-16 object-cover rounded-lg cursor-pointer ${
+                      className={`w-16 h-16 object-contain rounded-lg cursor-pointer ${
                         index === currentImageIndex ? 'border-2 border-[#15302d]' : 'border'
                       }`}
                       onClick={() => handleImageClick(index)}

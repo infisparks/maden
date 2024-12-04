@@ -3,7 +3,7 @@ import villa1 from './../icon/1.jpg'
 import villa2 from './../icon/2.jpg'
 import villa3 from './../icon/3.jpg'
 import villa4 from './../icon/4.jpg'
-import villa5 from './../icon/5.jpeg'
+import villa5 from './../icon/kaj.png'
 
 export const projects: Project[] = [
   {
