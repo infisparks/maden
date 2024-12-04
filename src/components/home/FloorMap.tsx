@@ -40,7 +40,7 @@ const floorPlans = [
   },
   {
     id: 'floor-3',
-    name: 'Price Detail on Elevation',
+    name: 'Price Detail ',
     details:
       'Comprehensive pricing details based on elevation and unit specifications.',
     priceDetails: [
