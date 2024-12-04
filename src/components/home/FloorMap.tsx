@@ -8,6 +8,8 @@ import { getDatabase, ref, push } from 'firebase/database';
 import second from './../../icon/2.jpg';
 import third from './../../icon/1.jpg';
 import first from './../../icon/3.jpg';
+import fouth from './../../icon/4.jpg';
+import fifth from './../../icon/5.jpeg';
 import e1 from './../../icon/nm1.jpeg';
 import e2 from './../../icon/nm2.jpeg';
 
@@ -36,7 +38,7 @@ const floorPlans = [
   {
     id: 'floor-2',
     name: 'Amenities',
-    images: [third, first, second],
+    images: [third, first, second ,fouth,fifth],
     details: 'Explore the various amenities available within the building.',
   },
   {
@@ -267,28 +269,28 @@ const FloorMap: React.FC = () => {
                       <table className="min-w-full bg-white">
                         <thead>
                           <tr>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                               Unit
                             </th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                               Area (sq ft)
                             </th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                               Rate ($/sq ft)
                             </th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                               Total ($)
                             </th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                               Stamp Duty ($)
                             </th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                               Registration ($)
                             </th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                               GST ($)
                             </th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                               Total Amount ($)
                             </th>
                           </tr>
@@ -296,28 +298,28 @@ const FloorMap: React.FC = () => {
                         <tbody>
                           {selectedFloor.priceDetails.map((item, index) => (
                             <tr key={index} className="hover:bg-gray-100">
-                              <td className="py-2 px-4 border-b text-sm text-gray-700">
+                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                 {item.unit}
                               </td>
-                              <td className="py-2 px-4 border-b text-sm text-gray-700">
+                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                 {item.area}
                               </td>
-                              <td className="py-2 px-4 border-b text-sm text-gray-700">
+                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                 {item.rate.toLocaleString()}
                               </td>
-                              <td className="py-2 px-4 border-b text-sm text-gray-700">
+                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                 {item.total.toLocaleString()}
                               </td>
-                              <td className="py-2 px-4 border-b text-sm text-gray-700">
+                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                 {item.stampDuty.toLocaleString()}
                               </td>
-                              <td className="py-2 px-4 border-b text-sm text-gray-700">
+                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                 {item.registration.toLocaleString()}
                               </td>
-                              <td className="py-2 px-4 border-b text-sm text-gray-700">
+                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                 {item.gst.toLocaleString()}
                               </td>
-                              <td className="py-2 px-4 border-b text-sm text-gray-700 font-semibold">
+                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 font-semibold whitespace-nowrap">
                                 {item.totalAmount.toLocaleString()}
                               </td>
                             </tr>
@@ -336,28 +338,28 @@ const FloorMap: React.FC = () => {
                         <table className="min-w-full bg-white">
                           <thead>
                             <tr>
-                              <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                                 Unit
                               </th>
-                              <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                                 Area (sq ft)
                               </th>
-                              <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                                 Rate ($/sq ft)
                               </th>
-                              <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                                 Total ($)
                               </th>
-                              <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                                 Stamp Duty ($)
                               </th>
-                              <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                                 Registration ($)
                               </th>
-                              <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                                 GST ($)
                               </th>
-                              <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-700">
+                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
                                 Total Amount ($)
                               </th>
                             </tr>
@@ -365,28 +367,28 @@ const FloorMap: React.FC = () => {
                           <tbody>
                             {selectedFloor.priceDetails.map((item, index) => (
                               <tr key={index} className="hover:bg-gray-100">
-                                <td className="py-2 px-4 border-b text-sm text-gray-700">
+                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                   {item.unit}
                                 </td>
-                                <td className="py-2 px-4 border-b text-sm text-gray-700">
+                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                   {item.area}
                                 </td>
-                                <td className="py-2 px-4 border-b text-sm text-gray-700">
+                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                   {item.rate.toLocaleString()}
                                 </td>
-                                <td className="py-2 px-4 border-b text-sm text-gray-700">
+                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                   {item.total.toLocaleString()}
                                 </td>
-                                <td className="py-2 px-4 border-b text-sm text-gray-700">
+                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                   {item.stampDuty.toLocaleString()}
                                 </td>
-                                <td className="py-2 px-4 border-b text-sm text-gray-700">
+                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                   {item.registration.toLocaleString()}
                                 </td>
-                                <td className="py-2 px-4 border-b text-sm text-gray-700">
+                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
                                   {item.gst.toLocaleString()}
                                 </td>
-                                <td className="py-2 px-4 border-b text-sm text-gray-700 font-semibold">
+                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 font-semibold whitespace-nowrap">
                                   {item.totalAmount.toLocaleString()}
                                 </td>
                               </tr>
