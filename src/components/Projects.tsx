@@ -18,7 +18,7 @@ const ProjectComponent = () => {
         <div className="flex flex-col lg:flex-row items-start justify-between gap-12">
           {/* Left side - Project Description */}
           <div className="flex-1 space-y-6">
-            <h2 className="text-3xl font-semibold">Nova ONE</h2>
+            <h2 className="text-3xl font-semibold">Nova 1</h2>
             <p className="text-lg leading-relaxed">
               This project focuses on developing an <span className="font-bold text-[#2C4F5F]">innovative solution</span> for modern infrastructure. It integrates <span className="font-bold text-[#2C4F5F]">AI-driven analytics</span> and <span className="font-bold text-[#2C4F5F]">cloud-based services</span> to create a seamless and scalable platform for users.
             </p>

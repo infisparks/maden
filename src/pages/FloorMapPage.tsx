@@ -4,6 +4,7 @@ import FloorMap from '../components/home/FloorMap';
 import m1 from './../icon/m1.png'; // Adjust the path based on your project structure
 import m2 from './../icon/m2.png'; // Adjust the path based on your project structure
 
+
 const FloorMapPage: React.FC = () => {
   // Correctly typed state
   const [hoveredImage, setHoveredImage] = useState<null | number>(null);
@@ -75,7 +76,7 @@ const FloorMapPage: React.FC = () => {
 
         {/* Building Map Section */}
         <section style={sectionStyle}>
-          <h2 style={sectionTitleStyle}>Building Map</h2>
+          <h2 style={sectionTitleStyle}>Floor Plan</h2>
           <div style={mapImagesContainerStyle}>
             {/* First Map Image */}
             <div

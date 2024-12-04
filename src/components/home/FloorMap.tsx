@@ -8,6 +8,8 @@ import { getDatabase, ref, push } from 'firebase/database';
 import second from './../../icon/2.jpg';
 import third from './../../icon/1.jpg';
 import first from './../../icon/3.jpg';
+import e1 from './../../icon/nm1.jpeg';
+import e2 from './../../icon/nm2.jpeg';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -20,7 +22,6 @@ const firebaseConfig = {
   measurementId: "G-FLCGBKNL0V"
 };
 
-
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
@@ -28,7 +29,7 @@ const floorPlans = [
   {
     id: 'floor-1',
     name: 'Elevation of Building',
-    images: [third, second, first],
+    images: [e1, e2],
     details:
       'Detailed elevation plans and architectural designs showcasing the building structure.',
   },
@@ -222,7 +223,9 @@ const FloorMap: React.FC = () => {
                   <img
                     src={selectedFloor.images[currentImageIndex]}
                     alt={`${selectedFloor.name} ${currentImageIndex + 1}`}
-                    className="w-full h-80 object-cover rounded-lg"
+                    className={`w-full rounded-lg ${
+                      selectedFloor.id === 'floor-1' ? 'object-contain' : 'h-80 object-cover'
+                    }`}
                   />
                   {/* Navigation Buttons */}
                   <button
