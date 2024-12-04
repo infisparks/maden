@@ -20,8 +20,9 @@ const ProjectComponent = () => {
           <div className="flex-1 space-y-6">
             <h2 className="text-3xl font-semibold">Nova 1</h2>
             <p className="text-lg leading-relaxed">
-              This project focuses on developing an <span className="font-bold text-[#2C4F5F]">innovative solution</span> for modern infrastructure. It integrates <span className="font-bold text-[#2C4F5F]">AI-driven analytics</span> and <span className="font-bold text-[#2C4F5F]">cloud-based services</span> to create a seamless and scalable platform for users.
-            </p>
+  The <span className="font-bold text-[#2C4F5F]">Nova</span>, crafted by <span className="font-bold text-[#2C4F5F]">Maden Multicorp LLP</span>, is a premier residential project in <span className="font-bold text-[#2C4F5F]">Taloja, Navi Mumbai</span>, blending modern aesthetics with innovative design. It offers <span className="font-bold text-[#2C4F5F]">studio apartments</span> and <span className="font-bold text-[#2C4F5F]">1 BHK homes</span> tailored for contemporary living, featuring <span className="font-bold text-[#2C4F5F]">modular kitchens</span>, <span className="font-bold text-[#2C4F5F]">sofa-cum-beds</span>, <span className="font-bold text-[#2C4F5F]">double-height luxury lobbies</span>, and <span className="font-bold text-[#2C4F5F]">24/7 security</span>. Strategically located near the <span className="font-bold text-[#2C4F5F]">Mumbai-Pune Expressway</span>, it provides seamless connectivity to essential amenities like schools, hospitals, and business hubs. The Nova redefines urban living, offering luxury, practicality, and convenience in one space.
+</p>
+
             <p className="text-lg leading-relaxed">
               The goal is to address various challenges in the industry, such as inefficiencies in <span className="font-bold text-[#2C4F5F]">data management</span>, security vulnerabilities, and lack of integration across systems.
             </p>
