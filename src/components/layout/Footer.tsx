@@ -31,6 +31,7 @@ export default function Footer() {
               <li><Link to="/Floor Plans" className="text-[#f6db98]/80 hover:text-[#f6db98]">Projects</Link></li>
               <li><Link to="/gallery" className="text-[#f6db98]/80 hover:text-[#f6db98]">Gallery</Link></li>
               <li><Link to="/contact" className="text-[#f6db98]/80 hover:text-[#f6db98]">Contact</Link></li>
+              <li><Link to="/privacy" className="text-[#f6db98]/80 hover:text-[#f6db98]">Privacy Policy</Link></li>
             </ul>
           </div>
           

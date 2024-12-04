@@ -9,7 +9,7 @@ import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 import FloorMapPage from './pages/FloorMapPage';
 import Admin from './pages/Admin';
-
+import PrivacyPolicyPage from './pages/Privacy';
 function App() {
   return (
     <Router>
@@ -24,6 +24,7 @@ function App() {
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/floor-plans" element={<FloorMapPage />} />
           </Routes>
         </main>
