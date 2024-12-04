@@ -15,11 +15,12 @@ const FloorMapPage: React.FC = () => {
     alignItems: 'center',
     padding: '20px',
     fontFamily: 'Arial, sans-serif',
+    maxWidth: '1200px', // Restrict max width for centered content
+    margin: '0 auto', // Center the container
   };
 
   const sectionStyle: React.CSSProperties = {
     width: '100%',
-    maxWidth: '1200px',
     marginTop: '40px',
     padding: '20px',
     backgroundColor: '#f9f9f9',
@@ -60,52 +61,57 @@ const FloorMapPage: React.FC = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <>
+      {/* PageHeader is outside the container to take full width */}
       <PageHeader
         title="Floor Plans"
         subtitle="Explore our thoughtfully designed spaces"
         image="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3"
       />
-      <FloorMap />
+      
+      {/* Main Content Container */}
+      <div style={containerStyle}>
+        <FloorMap />
 
-      {/* Building Map Section */}
-      <section style={sectionStyle}>
-        <h2 style={sectionTitleStyle}>Building Map</h2>
-        <div style={mapImagesContainerStyle}>
-          {/* First Map Image */}
-          <div
-            style={mapImageWrapperStyle}
-            onMouseEnter={() => setHoveredImage(1)}
-            onMouseLeave={() => setHoveredImage(null)}
-          >
-            <img
-              src={m1}
-              alt="Building Map 1"
-              style={{
-                ...mapImageStyle,
-                ...(hoveredImage === 1 ? mapImageHoverStyle : {}),
-              }}
-            />
-          </div>
+        {/* Building Map Section */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>Building Map</h2>
+          <div style={mapImagesContainerStyle}>
+            {/* First Map Image */}
+            <div
+              style={mapImageWrapperStyle}
+              onMouseEnter={() => setHoveredImage(1)}
+              onMouseLeave={() => setHoveredImage(null)}
+            >
+              <img
+                src={m1}
+                alt="Building Map 1"
+                style={{
+                  ...mapImageStyle,
+                  ...(hoveredImage === 1 ? mapImageHoverStyle : {}),
+                }}
+              />
+            </div>
 
-          {/* Second Map Image */}
-          <div
-            style={mapImageWrapperStyle}
-            onMouseEnter={() => setHoveredImage(2)}
-            onMouseLeave={() => setHoveredImage(null)}
-          >
-            <img
-              src={m2}
-              alt="Building Map 2"
-              style={{
-                ...mapImageStyle,
-                ...(hoveredImage === 2 ? mapImageHoverStyle : {}),
-              }}
-            />
+            {/* Second Map Image */}
+            <div
+              style={mapImageWrapperStyle}
+              onMouseEnter={() => setHoveredImage(2)}
+              onMouseLeave={() => setHoveredImage(null)}
+            >
+              <img
+                src={m2}
+                alt="Building Map 2"
+                style={{
+                  ...mapImageStyle,
+                  ...(hoveredImage === 2 ? mapImageHoverStyle : {}),
+                }}
+              />
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 
