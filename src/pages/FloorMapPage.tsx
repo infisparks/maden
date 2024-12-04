@@ -3,7 +3,7 @@ import PageHeader from '../components/shared/PageHeader';
 import FloorMap from '../components/home/FloorMap';
 import m1 from './../icon/m1.png'; // Adjust the path based on your project structure
 import m2 from './../icon/m2.png'; // Adjust the path based on your project structure
-
+import building from './../icon/building.png';
 
 const FloorMapPage: React.FC = () => {
   // Correctly typed state
@@ -64,12 +64,33 @@ const FloorMapPage: React.FC = () => {
   return (
     <>
       {/* PageHeader is outside the container to take full width */}
-      <PageHeader
-        title="Floor Plans"
+      {/* <PageHeader
+        title="Nova 1"
         subtitle="Explore our thoughtfully designed spaces"
-        image="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3"
-      />
+        image={building}
+      /> */}
       
+      <section className="flex flex-col lg:flex-row justify-center items-center min-h-screen bg-[#18322F] p-6 md:p-12">
+      {/* Text Content */}
+      <div className="text-white lg:w-1/2 lg:pr-8 mb-8 lg:mb-0">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#CFC29A] mb-4">
+          Nova 1
+        </h1>
+        <p className="text-base sm:text-lg leading-relaxed">
+          The Nova, crafted by Maden Multicorp LLP, is a premier residential project in Taloja, Navi Mumbai, blending modern aesthetics with innovative design. It offers studio apartments and 1 BHK homes tailored for contemporary living, featuring modular kitchens, sofa-cum-beds, double-height luxury lobbies, and 24/7 security. Strategically located near the Mumbai-Pune Expressway, it provides seamless connectivity to essential amenities like schools, hospitals, and business hubs. The Nova redefines urban living, offering luxury, practicality, and convenience in one space.
+        </p>
+      </div>
+
+      {/* Image */}
+      <div className="lg:w-1/2 flex justify-center">
+        <img
+          src={building}
+          alt="Nova Residential Building"
+          className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl h-auto rounded shadow-lg"
+        />
+      </div>
+    </section>
+
       {/* Main Content Container */}
       <div style={containerStyle}>
         <FloorMap />

@@ -31,19 +31,25 @@ const floorPlans = [
   {
     id: 'floor-1',
     name: 'Elevation of Building',
-    images: [e1, e2],
-    details:
-      'Detailed elevation plans and architectural designs showcasing the building structure.',
+    images: [
+      { src: e2, details: 'Elevation image 1 ' },
+      { src: e1, details: 'Elevation image 2' }
+    ],
   },
   {
     id: 'floor-2',
     name: 'Amenities',
-    images: [third, first, second ,fouth,fifth],
-    details: 'Explore the various amenities available within the building.',
+    images: [
+      { src: fifth, details: '⁠Kajaria CP Fittings' },
+      { src: third, details: 'Modular kitchens' },
+      { src: first, details: '⁠Highly Trained Security' },
+      { src: second, details: 'Sofa-cum- bed' },
+      { src: fouth, details: 'Double Height luxury Lobby' },
+    ],
   },
   {
     id: 'floor-3',
-    name: 'Price Detail ',
+    name: 'Price Detail',
     details:
       'Comprehensive pricing details based on elevation and unit specifications.',
     priceDetails: [
@@ -81,7 +87,7 @@ const floorPlans = [
   },
 ];
 
-const FloorMap: React.FC = () => {
+const FloorMap = () => {
   const [selectedFloor, setSelectedFloor] = useState(floorPlans[0]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPriceUnblurred, setIsPriceUnblurred] = useState(false);
@@ -104,9 +110,8 @@ const FloorMap: React.FC = () => {
   const handleViewPrice = () => {
     setIsContactFormOpen(true);
   };
-
   // Handle contact form submission
-  const handleFormSubmit = async (event: React.FormEvent) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Save data to Firebase
     try {
@@ -160,6 +165,10 @@ const FloorMap: React.FC = () => {
     }));
   };
 
+  const handleImageClick = (index: number) => {
+    setCurrentImageIndex(index);
+  };
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -198,18 +207,25 @@ const FloorMap: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <div>
+                <div className="flex items-center">
+                  {floor.images && floor.images[0] && (
+                    <img
+                      src={floor.images[0].src}
+                      alt={floor.name}
+                      className="w-12 h-12 mr-4 object-cover rounded-full"
+                    />
+                  )}
                   <h3 className="text-xl font-semibold">{floor.name}</h3>
-                  <p
-                    className={`text-sm mt-2 ${
-                      selectedFloor.id === floor.id
-                        ? 'text-[#f6db98]/80'
-                        : 'text-gray-600'
-                    }`}
-                  >
-                    {floor.details}
-                  </p>
                 </div>
+                <p
+                  className={`text-sm mt-2 ${
+                    selectedFloor.id === floor.id
+                      ? 'text-[#f6db98]/80'
+                      : 'text-gray-600'
+                  }`}
+                >
+                  {floor.details}
+                </p>
               </motion.button>
             ))}
           </div>
@@ -223,7 +239,7 @@ const FloorMap: React.FC = () => {
                 </h3>
                 <div className="relative">
                   <img
-                    src={selectedFloor.images[currentImageIndex]}
+                    src={selectedFloor.images[currentImageIndex].src}
                     alt={`${selectedFloor.name} ${currentImageIndex + 1}`}
                     className={`w-full rounded-lg ${
                       selectedFloor.id === 'floor-1' ? 'object-contain' : 'h-80 object-cover'
@@ -243,20 +259,22 @@ const FloorMap: React.FC = () => {
                     &#8594;
                   </button>
                 </div>
-                <div className="flex justify-center mt-4 space-x-2">
-                  {selectedFloor.images.map((_, index) => (
-                    <span
+                <div className="flex justify-center mt-4 space-x-2 overflow-x-auto">
+                  {selectedFloor.images.map((img, index) => (
+                    <img
                       key={index}
-                      className={`w-3 h-3 rounded-full cursor-pointer ${
-                        index === currentImageIndex
-                          ? 'bg-[#15302d]'
-                          : 'bg-gray-300'
+                      src={img.src}
+                      alt={`Thumbnail ${index + 1}`}
+                      className={`w-16 h-16 object-cover rounded-lg cursor-pointer ${
+                        index === currentImageIndex ? 'border-2 border-[#15302d]' : 'border'
                       }`}
-                      onClick={() => setCurrentImageIndex(index)}
-                    ></span>
+                      onClick={() => handleImageClick(index)}
+                    />
                   ))}
                 </div>
-                <p className="text-gray-700 mt-4">{selectedFloor.details}</p>
+                <p className="text-gray-700 mt-4">
+                  {selectedFloor.images[currentImageIndex].details}
+                </p>
               </div>
             ) : selectedFloor.priceDetails ? (
               <div className="relative">
@@ -265,67 +283,101 @@ const FloorMap: React.FC = () => {
                     <h3 className="text-2xl font-semibold mb-4 text-[#15302d]">
                       Price Details - MADEN NOVA 1
                     </h3>
-                    <div className="overflow-x-auto">
-                      <table className="min-w-full bg-white">
-                        <thead>
-                          <tr>
-                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                              Unit
-                            </th>
-                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                              Area (sq ft)
-                            </th>
-                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                              Rate ($/sq ft)
-                            </th>
-                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                              Total ($)
-                            </th>
-                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                              Stamp Duty ($)
-                            </th>
-                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                              Registration ($)
-                            </th>
-                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                              GST ($)
-                            </th>
-                            <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                              Total Amount ($)
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {selectedFloor.priceDetails.map((item, index) => (
-                            <tr key={index} className="hover:bg-gray-100">
-                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                {item.unit}
-                              </td>
-                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                {item.area}
-                              </td>
-                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                {item.rate.toLocaleString()}
-                              </td>
-                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                {item.total.toLocaleString()}
-                              </td>
-                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                {item.stampDuty.toLocaleString()}
-                              </td>
-                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                {item.registration.toLocaleString()}
-                              </td>
-                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                {item.gst.toLocaleString()}
-                              </td>
-                              <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 font-semibold whitespace-nowrap">
-                                {item.totalAmount.toLocaleString()}
-                              </td>
+                    {/* For larger screens */}
+                    <div className="hidden sm:block">
+                      <div className="overflow-x-auto">
+                        <table className="min-w-full bg-white">
+                          <thead>
+                            <tr>
+                              <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                Unit
+                              </th>
+                              <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                Area (sq ft)
+                              </th>
+                              <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                Rate ($/sq ft)
+                              </th>
+                              <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                Total ($)
+                              </th>
+                              <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                Stamp Duty ($)
+                              </th>
+                              <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                Registration ($)
+                              </th>
+                              <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                GST ($)
+                              </th>
+                              <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                Total Amount ($)
+                              </th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                          </thead>
+                          <tbody>
+                            {selectedFloor.priceDetails.map((item, index) => (
+                              <tr key={index} className="hover:bg-gray-100">
+                                <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                  {item.unit}
+                                </td>
+                                <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                  {item.area}
+                                </td>
+                                <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                  {item.rate.toLocaleString()}
+                                </td>
+                                <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                  {item.total.toLocaleString()}
+                                </td>
+                                <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                  {item.stampDuty.toLocaleString()}
+                                </td>
+                                <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                  {item.registration.toLocaleString()}
+                                </td>
+                                <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                  {item.gst.toLocaleString()}
+                                </td>
+                                <td className="py-2 px-2 border-b text-sm font-semibold text-gray-700">
+                                  {item.totalAmount.toLocaleString()}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    {/* For mobile screens */}
+                    <div className="block sm:hidden">
+                      <div className="space-y-4">
+                        {selectedFloor.priceDetails.map((item, index) => (
+                          <div key={index} className="bg-white p-4 rounded-lg shadow">
+                            <h4 className="text-lg font-semibold mb-2">{item.unit}</h4>
+                            <p className="text-sm text-gray-700">
+                              <span className="font-medium">Area:</span> {item.area} sq ft
+                            </p>
+                            <p className="text-sm text-gray-700">
+                              <span className="font-medium">Rate:</span> ${item.rate.toLocaleString()}/sq ft
+                            </p>
+                            <p className="text-sm text-gray-700">
+                              <span className="font-medium">Total:</span> ${item.total.toLocaleString()}
+                            </p>
+                            <p className="text-sm text-gray-700">
+                              <span className="font-medium">Stamp Duty:</span> ${item.stampDuty.toLocaleString()}
+                            </p>
+                            <p className="text-sm text-gray-700">
+                              <span className="font-medium">Registration:</span> ${item.registration.toLocaleString()}
+                            </p>
+                            <p className="text-sm text-gray-700">
+                              <span className="font-medium">GST:</span> ${item.gst.toLocaleString()}
+                            </p>
+                            <p className="text-sm font-semibold text-gray-700">
+                              <span className="font-medium">Total Amount:</span> ${item.totalAmount.toLocaleString()}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ) : (
@@ -334,67 +386,101 @@ const FloorMap: React.FC = () => {
                       <h3 className="text-2xl font-semibold mb-4 text-[#15302d]">
                         Price Details - MADEN NOVA 1
                       </h3>
-                      <div className="overflow-x-auto">
-                        <table className="min-w-full bg-white">
-                          <thead>
-                            <tr>
-                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                                Unit
-                              </th>
-                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                                Area (sq ft)
-                              </th>
-                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                                Rate ($/sq ft)
-                              </th>
-                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                                Total ($)
-                              </th>
-                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                                Stamp Duty ($)
-                              </th>
-                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                                Registration ($)
-                              </th>
-                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                                GST ($)
-                              </th>
-                              <th className="py-2 px-2 sm:py-3 sm:px-4 border-b text-left text-sm sm:text-base font-medium text-gray-700 whitespace-nowrap">
-                                Total Amount ($)
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {selectedFloor.priceDetails.map((item, index) => (
-                              <tr key={index} className="hover:bg-gray-100">
-                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                  {item.unit}
-                                </td>
-                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                  {item.area}
-                                </td>
-                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                  {item.rate.toLocaleString()}
-                                </td>
-                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                  {item.total.toLocaleString()}
-                                </td>
-                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                  {item.stampDuty.toLocaleString()}
-                                </td>
-                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                  {item.registration.toLocaleString()}
-                                </td>
-                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 whitespace-nowrap">
-                                  {item.gst.toLocaleString()}
-                                </td>
-                                <td className="py-2 px-2 sm:py-3 sm:px-4 border-b text-sm sm:text-base text-gray-700 font-semibold whitespace-nowrap">
-                                  {item.totalAmount.toLocaleString()}
-                                </td>
+                      {/* For larger screens */}
+                      <div className="hidden sm:block">
+                        <div className="overflow-x-auto">
+                          <table className="min-w-full bg-white">
+                            <thead>
+                              <tr>
+                                <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                  Unit
+                                </th>
+                                <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                  Area (sq ft)
+                                </th>
+                                <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                  Rate ($/sq ft)
+                                </th>
+                                <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                  Total ($)
+                                </th>
+                                <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                  Stamp Duty ($)
+                                </th>
+                                <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                  Registration ($)
+                                </th>
+                                <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                  GST ($)
+                                </th>
+                                <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
+                                  Total Amount ($)
+                                </th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                              {selectedFloor.priceDetails.map((item, index) => (
+                                <tr key={index} className="hover:bg-gray-100">
+                                  <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                    {item.unit}
+                                  </td>
+                                  <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                    {item.area}
+                                  </td>
+                                  <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                    {item.rate.toLocaleString()}
+                                  </td>
+                                  <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                    {item.total.toLocaleString()}
+                                  </td>
+                                  <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                    {item.stampDuty.toLocaleString()}
+                                  </td>
+                                  <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                    {item.registration.toLocaleString()}
+                                  </td>
+                                  <td className="py-2 px-2 border-b text-sm text-gray-700">
+                                    {item.gst.toLocaleString()}
+                                  </td>
+                                  <td className="py-2 px-2 border-b text-sm font-semibold text-gray-700">
+                                    {item.totalAmount.toLocaleString()}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      {/* For mobile screens */}
+                      <div className="block sm:hidden">
+                        <div className="space-y-4">
+                          {selectedFloor.priceDetails.map((item, index) => (
+                            <div key={index} className="bg-white p-4 rounded-lg shadow">
+                              <h4 className="text-lg font-semibold mb-2">{item.unit}</h4>
+                              <p className="text-sm text-gray-700">
+                                <span className="font-medium">Area:</span> {item.area} sq ft
+                              </p>
+                              <p className="text-sm text-gray-700">
+                                <span className="font-medium">Rate:</span> ${item.rate.toLocaleString()}/sq ft
+                              </p>
+                              <p className="text-sm text-gray-700">
+                                <span className="font-medium">Total:</span> ${item.total.toLocaleString()}
+                              </p>
+                              <p className="text-sm text-gray-700">
+                                <span className="font-medium">Stamp Duty:</span> ${item.stampDuty.toLocaleString()}
+                              </p>
+                              <p className="text-sm text-gray-700">
+                                <span className="font-medium">Registration:</span> ${item.registration.toLocaleString()}
+                              </p>
+                              <p className="text-sm text-gray-700">
+                                <span className="font-medium">GST:</span> ${item.gst.toLocaleString()}
+                              </p>
+                              <p className="text-sm font-semibold text-gray-700">
+                                <span className="font-medium">Total Amount:</span> ${item.totalAmount.toLocaleString()}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                     {/* View Price Button */}

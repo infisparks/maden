@@ -8,7 +8,7 @@ const ProjectComponent = () => {
 
   // Function to handle the redirection
   const handleViewMoreClick = () => {
-    navigate('/project');  // Redirect to the project page (adjust the route as needed)
+    navigate('/floor-plans');  // Redirect to the project page (adjust the route as needed)
   };
 
   return (
@@ -30,7 +30,7 @@ const ProjectComponent = () => {
                 onClick={handleViewMoreClick}  // Attach the click handler to the button
                 className="group bg-[#18322F] text-white px-6 py-3 rounded-lg shadow-lg hover:bg-[#2C4F5F] transition duration-300 flex items-center space-x-2"
               >
-                <span>View More</span>
+                <span>View Detail</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
