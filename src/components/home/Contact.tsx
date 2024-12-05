@@ -8,7 +8,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyAay8M_58K8RXHCfzmM2Gdw7dEgGmwz1sw",
   authDomain: "maden-infispark.firebaseapp.com",
   projectId: "maden-infispark",
-  storageBucket: "maden-infispark.appspot.com", // Corrected
+  storageBucket: "maden-infispark.appspot.com",
   messagingSenderId: "1047210661059",
   appId: "1:1047210661059:web:4a372d286c5d0406fc3e76",
   measurementId: "G-FLCGBKNL0V"
@@ -23,6 +23,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   });
 
@@ -32,6 +33,7 @@ export default function Contact() {
     message: '',
     isSuccess: false
   });
+
   // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -40,6 +42,7 @@ export default function Contact() {
       [name]: value
     }));
   };
+
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission
@@ -52,6 +55,7 @@ export default function Contact() {
       await push(contactsRef, {
         name: formData.name,
         email: formData.email,
+        phone: formData.phone,
         message: formData.message,
         timestamp: Date.now()
       });
@@ -67,6 +71,7 @@ export default function Contact() {
       setFormData({
         name: '',
         email: '',
+        phone: '',
         message: ''
       });
     } catch (error) {
@@ -120,6 +125,17 @@ export default function Contact() {
                 required
                 className="w-full px-4 py-3 bg-white/10 text-[#f6db98] placeholder-[#f6db98]/50 border border-[#f6db98]/20 rounded focus:outline-none focus:border-[#f6db98]"
               />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Your Phone Number"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                pattern="[0-9]{10}"
+                title="Please enter a valid 10-digit phone number"
+                className="w-full px-4 py-3 bg-white/10 text-[#f6db98] placeholder-[#f6db98]/50 border border-[#f6db98]/20 rounded focus:outline-none focus:border-[#f6db98]"
+              />
               <textarea
                 name="message"
                 placeholder="Your Message"
@@ -154,8 +170,8 @@ export default function Contact() {
               <div className="flex items-center">
                 <MapPin className="w-6 h-6 text-[#f6db98] mr-4" />
                 <span className="text-[#f6db98]">
-                B-906, Shelton Sapphire, Sec-15, plot
-                no. 18 & 19, <br />CBD Belapur, Navi Mumbai, 400614.
+                  B-906, Shelton Sapphire, Sec-15, plot
+                  no. 18 & 19, <br />CBD Belapur, Navi Mumbai, 400614.
                 </span>
               </div>
             </div>

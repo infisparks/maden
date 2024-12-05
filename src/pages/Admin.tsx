@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, remove } from 'firebase/database';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 
 // Firebase configuration (ensure to secure your API keys in a real project)
@@ -24,7 +24,7 @@ type Contact = {
   id: string;
   name: string;
   email: string;
-  phone: string;        // Added phone field
+  phone: string;
   message: string;
   timestamp: number;
 };
@@ -42,6 +42,8 @@ export default function AdminPage() {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null); // Track which contact is being deleted
+  const [feedbackMessage, setFeedbackMessage] = useState<string>(''); // Success/Error messages
 
   // Check authentication status
   useEffect(() => {
@@ -91,6 +93,7 @@ export default function AdminPage() {
         // Login successful
         setIsLoggedIn(true);
         setLoginError('');
+        setFeedbackMessage('');
       })
       .catch((error) => {
         console.error('Login error:', error);
@@ -119,10 +122,32 @@ export default function AdminPage() {
         // Sign-out successful
         setIsLoggedIn(false);
         setContacts([]);
+        setFeedbackMessage('Successfully logged out.');
       })
       .catch((error) => {
         console.error('Logout error:', error);
+        setFeedbackMessage('Error logging out. Please try again.');
       });
+  };
+
+  // Handle deletion of a contact
+  const handleDelete = (id: string) => {
+    if (window.confirm('Are you sure you want to delete this contact? This action cannot be undone.')) {
+      setDeletingId(id);
+      const contactRef = ref(database, `contacts/${id}`);
+      remove(contactRef)
+        .then(() => {
+          setFeedbackMessage('Contact deleted successfully.');
+          setDeletingId(null);
+          // Optionally, you can refetch contacts or remove from state
+          setContacts((prevContacts) => prevContacts.filter(contact => contact.id !== id));
+        })
+        .catch((error) => {
+          console.error('Error deleting contact:', error);
+          setFeedbackMessage('Failed to delete contact. Please try again.');
+          setDeletingId(null);
+        });
+    }
   };
 
   // Filter contacts based on search query
@@ -132,7 +157,7 @@ export default function AdminPage() {
       contact.name.toLowerCase().includes(query) ||
       contact.email.toLowerCase().includes(query) ||
       contact.message.toLowerCase().includes(query) ||
-      contact.phone.toLowerCase().includes(query) // Include phone in search
+      contact.phone.toLowerCase().includes(query)
     );
   });
 
@@ -150,6 +175,12 @@ export default function AdminPage() {
               Logout
             </button>
           </div>
+          {/* Feedback Message */}
+          {feedbackMessage && (
+            <div className="mb-4 p-4 bg-green-100 text-green-700 rounded-md">
+              {feedbackMessage}
+            </div>
+          )}
           {/* Search input */}
           <div className="mb-6">
             <input
@@ -195,9 +226,10 @@ export default function AdminPage() {
                       <th className="py-3 px-4 text-left">No.</th>
                       <th className="py-3 px-4 text-left">Name</th>
                       <th className="py-3 px-4 text-left">Email</th>
-                      <th className="py-3 px-4 text-left">Phone</th> {/* New Phone column */}
+                      <th className="py-3 px-4 text-left">Phone</th>
                       <th className="py-3 px-4 text-left">Message</th>
                       <th className="py-3 px-4 text-left">Timestamp</th>
+                      <th className="py-3 px-4 text-left">Actions</th> {/* Actions column */}
                     </tr>
                   </thead>
                   <tbody>
@@ -206,10 +238,42 @@ export default function AdminPage() {
                         <td className="py-3 px-4">{index + 1}</td>
                         <td className="py-3 px-4">{contact.name}</td>
                         <td className="py-3 px-4">{contact.email}</td>
-                        <td className="py-3 px-4">{contact.phone}</td> {/* Display phone */}
+                        <td className="py-3 px-4">{contact.phone}</td>
                         <td className="py-3 px-4">{contact.message}</td>
                         <td className="py-3 px-4">
                           {new Date(contact.timestamp).toLocaleString()}
+                        </td>
+                        <td className="py-3 px-4">
+                          <button
+                            onClick={() => handleDelete(contact.id)}
+                            className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors duration-200"
+                            disabled={deletingId === contact.id}
+                          >
+                            {deletingId === contact.id ? (
+                              <svg
+                                className="animate-spin h-5 w-5 mx-auto"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                ></circle>
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8v8H4z"
+                                ></path>
+                              </svg>
+                            ) : (
+                              'Delete'
+                            )}
+                          </button>
                         </td>
                       </tr>
                     ))}
