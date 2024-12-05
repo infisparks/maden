@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
@@ -10,6 +10,7 @@ import ContactPage from './pages/ContactPage';
 import FloorMapPage from './pages/FloorMapPage';
 import Admin from './pages/Admin';
 import PrivacyPolicyPage from './pages/Privacy';
+
 function App() {
   return (
     <Router>

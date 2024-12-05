@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Menu } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import NavMenu from './NavMenu';
 import madenLogo from '../../maden.png'; // Adjust the path based on your file structure
 
@@ -16,13 +17,15 @@ export default function Header() {
     <header className="fixed w-full bg-[#15302d]/95 backdrop-blur-sm z-50">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          {/* Logo */}
+          {/* Logo wrapped with Link to redirect to "/" */}
           <div className="flex-shrink-0">
-            <img
-              src={madenLogo}
-              alt="MADEN Logo"
-              style={{ height: '60px', width: 'auto' }}
-            />
+            <Link to="/">
+              <img
+                src={madenLogo}
+                alt="MADEN Logo"
+                style={{ height: '60px', width: 'auto' }}
+              />
+            </Link>
           </div>
           
           {/* Desktop Menu */}

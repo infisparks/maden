@@ -20,7 +20,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-[#f6db98]/80">
-            Luxury construction, innovative design, 30+ years of excellence, Maden Multicorp.
+            Over seven years of success in the construction industry.
             </p>
           </div>
           
