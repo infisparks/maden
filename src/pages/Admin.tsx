@@ -24,6 +24,7 @@ type Contact = {
   id: string;
   name: string;
   email: string;
+  phone: string;        // Added phone field
   message: string;
   timestamp: number;
 };
@@ -68,6 +69,8 @@ export default function AdminPage() {
           id,
           ...(contact as Omit<Contact, 'id'>),
         }));
+        // Sort contacts by timestamp descending (most recent first)
+        contactsArray.sort((a, b) => b.timestamp - a.timestamp);
         setContacts(contactsArray);
       } else {
         setContacts([]);
@@ -128,7 +131,8 @@ export default function AdminPage() {
     return (
       contact.name.toLowerCase().includes(query) ||
       contact.email.toLowerCase().includes(query) ||
-      contact.message.toLowerCase().includes(query)
+      contact.message.toLowerCase().includes(query) ||
+      contact.phone.toLowerCase().includes(query) // Include phone in search
     );
   });
 
@@ -191,6 +195,7 @@ export default function AdminPage() {
                       <th className="py-3 px-4 text-left">No.</th>
                       <th className="py-3 px-4 text-left">Name</th>
                       <th className="py-3 px-4 text-left">Email</th>
+                      <th className="py-3 px-4 text-left">Phone</th> {/* New Phone column */}
                       <th className="py-3 px-4 text-left">Message</th>
                       <th className="py-3 px-4 text-left">Timestamp</th>
                     </tr>
@@ -201,6 +206,7 @@ export default function AdminPage() {
                         <td className="py-3 px-4">{index + 1}</td>
                         <td className="py-3 px-4">{contact.name}</td>
                         <td className="py-3 px-4">{contact.email}</td>
+                        <td className="py-3 px-4">{contact.phone}</td> {/* Display phone */}
                         <td className="py-3 px-4">{contact.message}</td>
                         <td className="py-3 px-4">
                           {new Date(contact.timestamp).toLocaleString()}
