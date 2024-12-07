@@ -301,22 +301,22 @@ const FloorMap = () => {
                                 Area (sq ft)
                               </th>
                               <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
-                                Rate ($/sq ft)
+                                Rate (₹/sq ft)
                               </th>
                               <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
-                                Total ($)
+                                Total (₹)
                               </th>
                               <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
-                                Stamp Duty ($)
+                                Stamp Duty (₹)
                               </th>
                               <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
-                                Registration ($)
+                                Registration (₹)
                               </th>
                               <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
-                                GST ($)
+                                GST (₹)
                               </th>
                               <th className="py-2 px-2 border-b text-left text-sm font-medium text-gray-700">
-                                Total Amount ($)
+                                Total Amount (₹)
                               </th>
                             </tr>
                           </thead>
