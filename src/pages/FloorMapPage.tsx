@@ -72,7 +72,7 @@ const FloorMapPage: React.FC = () => {
       
       <section id='top' className="flex pt-20 flex-col lg:flex-row justify-center items-center min-h-screen bg-[#18322F] p-6 md:p-12">
       {/* Text Content */}
-      <div className=" text-white lg:w-1/2 lg:pr-8 mb-8 lg:mb-0">
+      <div className=" text-white lg:w-1/2 lg:pr-8 mb-8 lg:mb-0 mt-4">
         <h1 className="text-3xl sm:text-4xl font-bold text-[#CFC29A] mb-4">
           Nova 1
         </h1>
