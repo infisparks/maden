@@ -23,7 +23,7 @@ export default function Philosophy() {
     'Maintain unwavering commitment to quality and client satisfaction.',
   ];
 
-  const founderContent = "Mr. Ubaid Zariwala, Founder and CEO of Maden MultiCorp, brings over 7 years of expertise in the real estate industry. With a passion for transforming the way people perceive luxury living, Mr. Zariwala envisioned Maden MultiCorp as a beacon of innovation and affordability. Guided by his dream of offering premium living spaces that blend opulence with practicality, he established Maden MultiCorp to make luxury homes accessible to all. Under Mr. Zariwala's leadership, Maden MultiCorp has become synonymous with quality, reliability, and value. His visionary approach drives the company's mission to redefine real estate by creating homes that are not just spaces to live in but milestones of aspiration and achievement.";
+  const founderContent = "Mr. Ubaid Zariwala, Founder and CEO of Maden MultiCorp, brings over 7+ years of expertise in the real estate industry. With a passion for transforming the way people perceive luxury living, Mr. Zariwala envisioned Maden MultiCorp as a beacon of innovation and affordability. Guided by his dream of offering premium living spaces that blend opulence with practicality, he established Maden MultiCorp to make luxury homes accessible to all. Under Mr. Zariwala's leadership, Maden MultiCorp has become synonymous with quality, reliability, and value. His visionary approach drives the company's mission to redefine real estate by creating homes that are not just spaces to live in but milestones of aspiration and achievement.";
 
   return (
     <section className="py-20 bg-[#15302d]">
