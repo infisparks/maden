@@ -73,9 +73,21 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-[#f6db98]/20 text-center text-[#f6db98]/60">
-          <p>&copy; {new Date().getFullYear()} Maden Multicorp. All rights reserved.</p>
-        </div>
+      <div className="mt-12 pt-8 border-t border-[#f6db98]/20 text-center text-[#f6db98]/60">
+  <p>&copy; {new Date().getFullYear()} Maden Multicorp. All rights reserved.</p>
+  <p>
+    Powered by{' '}
+    <a
+      href="https://infispark.in"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-[#f6db98]/80 hover:text-[#f6db98]"
+    >
+      Infispark
+    </a>
+  </p>
+</div>
+
       </div>
     </footer>
   );
