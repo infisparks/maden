@@ -43,75 +43,75 @@ const FloorMapPage: React.FC = () => {
     window.scrollTo(0,0);
   }, []);
 
-  const containerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    fontFamily: 'Arial, sans-serif',
-    maxWidth: '1200px',
-    margin: '0 auto',
-  };
+  // const containerStyle: React.CSSProperties = {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   padding: '20px',
+  //   fontFamily: 'Arial, sans-serif',
+  //   maxWidth: '1200px',
+  //   margin: '0 auto',
+  // };
 
-  const sectionStyle: React.CSSProperties = {
-    width: '100%',
-    marginTop: '40px',
-    padding: '20px',
-    backgroundColor: '#f9f9f9',
-    borderRadius: '8px',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-  };
+  // const sectionStyle: React.CSSProperties = {
+  //   width: '100%',
+  //   marginTop: '40px',
+  //   padding: '20px',
+  //   backgroundColor: '#f9f9f9',
+  //   borderRadius: '8px',
+  //   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+  // };
 
-  const sectionTitleStyle: React.CSSProperties = {
-    textAlign: 'center',
-    fontSize: '2rem',
-    marginBottom: '30px',
-    color: '#333',
-  };
+  // const sectionTitleStyle: React.CSSProperties = {
+  //   textAlign: 'center',
+  //   fontSize: '2rem',
+  //   marginBottom: '30px',
+  //   color: '#333',
+  // };
 
-  const mapImagesContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '20px',
-    justifyContent: 'center',
-  };
+  // const mapImagesContainerStyle: React.CSSProperties = {
+  //   display: 'flex',
+  //   flexWrap: 'wrap',
+  //   gap: '20px',
+  //   justifyContent: 'center',
+  // };
 
-  const mapImageWrapperStyle: React.CSSProperties = {
-    position: 'relative',
-    flex: '1 1 45%',
-    maxWidth: '500px',
-    boxSizing: 'border-box',
-    cursor: 'pointer',
-  };
+  // const mapImageWrapperStyle: React.CSSProperties = {
+  //   position: 'relative',
+  //   flex: '1 1 45%',
+  //   maxWidth: '500px',
+  //   boxSizing: 'border-box',
+  //   cursor: 'pointer',
+  // };
 
-  const mapImageStyle: React.CSSProperties = {
-    width: '100%',
-    height: 'auto',
-    borderRadius: '4px',
-    objectFit: 'cover',
-    transition: 'transform 0.3s ease',
-  };
+  // const mapImageStyle: React.CSSProperties = {
+  //   width: '100%',
+  //   height: 'auto',
+  //   borderRadius: '4px',
+  //   objectFit: 'cover',
+  //   transition: 'transform 0.3s ease',
+  // };
 
-  const mapImageHoverStyle: React.CSSProperties = {
-    transform: 'scale(1.05)',
-  };
+  // const mapImageHoverStyle: React.CSSProperties = {
+  //   transform: 'scale(1.05)',
+  // };
 
-  const overlayStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: '1.2rem',
-    textAlign: 'center' as const,
-    borderRadius: '4px',
-  };
+  // const overlayStyle: React.CSSProperties = {
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   right: 0,
+  //   bottom: 0,
+  //   backgroundColor: 'rgba(0,0,0,0.5)',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   color: '#fff',
+  //   fontWeight: 'bold',
+  //   fontSize: '1.2rem',
+  //   textAlign: 'center' as const,
+  //   borderRadius: '4px',
+  // };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -152,6 +152,10 @@ const FloorMapPage: React.FC = () => {
             <br /><br />
             Residents are welcomed by a grand double-height luxury lobby and enjoy 24/7 CCTV surveillance, branded lifts, and highly trained security staff for peace of mind.
           </p>
+          <br />
+          <p className='pt-4 text-base sm:text-lg leading-relaxed'>
+          studios and 1 bhi starting from 20,70000 lakh
+          </p>
         </div>
         <div className="lg:w-1/2 flex justify-center">
           <img
@@ -162,6 +166,8 @@ const FloorMapPage: React.FC = () => {
         </div>
       </section>
 
+      <FloorMap/>
+{/* 
       <div style={containerStyle}>
         <FloorMap />
         <section style={sectionStyle}>
@@ -210,7 +216,7 @@ View Map                </div>
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
 
       {isContactFormOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">

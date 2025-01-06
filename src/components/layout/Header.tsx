@@ -23,7 +23,7 @@ export default function Header() {
               <img
                 src={madenLogo}
                 alt="MADEN Logo"
-                style={{ height: '60px', width: 'auto' }}
+                style={{ height: '70px', width: 'auto' }}
               />
             </Link>
           </div>
