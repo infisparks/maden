@@ -106,7 +106,7 @@ Message: ${data.message}
 
     // Define query params without manual encoding of the message
     const params = {
-      number: '919958399157',                 // e.g., 919876543210
+      number: '917869786492',                 // e.g., 919876543210
       type: 'text',                           // sending a text message
       message: message,                       // Pass the raw message
       instance_id: '67278A2693C73',           // your instance_id
