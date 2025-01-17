@@ -132,7 +132,7 @@ Message: ${data.message}
       console.log('WhatsApp message sent successfully:', responseData);
     } catch (error) {
       console.error('Error sending WhatsApp message:', error);
-      setError('Failed to send WhatsApp message. Please try again.');
+      
     }
   };
 
