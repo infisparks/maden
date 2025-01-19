@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { database } from './../firebase';
 import { ref, push } from 'firebase/database';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Define the props for the ContactForm component
 interface ContactFormProps {
@@ -77,7 +79,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
   };
 
   /**
-   * Sends a WhatsApp message with full contact form data by creating and submitting a hidden form (GET request).
+   * Sends a WhatsApp message with full contact form data using the new API.
    * @param data The full contact form data.
    */
   const sendWhatsAppMessage = async (data: FormData) => {
@@ -92,8 +94,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
     // Prepend country code (91 for India). Adjust if necessary.
     const fullNumber = `91${data.phone}`;
 
-    // WhatsApp API endpoint (GET request)
-    const apiUrl = 'https://adrika.aknexus.in/api/send';
+    // WhatsApp API endpoint (POST request)
+    const apiUrl = 'https://wa.medblisss.com/send-text';
+
+    // Define the token (your provided token)
+    const token = '9958399157'; // Ensure this is securely managed
+
+    // Define the recipient's number (e.g., your company's WhatsApp number)
+    const recipientNumber = '917869786492'; // Replace with your actual recipient number
 
     // Construct the message with all form data
     const message = `
@@ -104,40 +112,42 @@ Phone: ${fullNumber}
 Message: ${data.message}
     `.trim();
 
-    // Define query params without manual encoding of the message
-    const params = {
-      number: '917869786492',                 // e.g., 919876543210
-      type: 'text',                           // sending a text message
-      message: message,                       // Pass the raw message
-      instance_id: '67278A2693C73',           // your instance_id
-      access_token: '67277e6184833',          // your access_token (consider securing this)
+    // Define the request payload
+    const payload = {
+      token: token,           // Your provided token
+      number: recipientNumber, // Recipient's number
+      message: message,         // The message to send
     };
 
-    // Construct the query string using URLSearchParams, which handles encoding
-    const queryString = new URLSearchParams(params).toString();
-    const requestUrl = `${apiUrl}?${queryString}`;
-
     try {
-      // Make the GET request using fetch
-      const response = await fetch(requestUrl, {
-        method: 'GET',
+      // Make the POST request using fetch
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        throw new Error(`WhatsApp API responded with status ${response.status}`);
+        const errorData = await response.json();
+        throw new Error(errorData.message || `WhatsApp API responded with status ${response.status}`);
       }
 
       // Optionally, handle the response data
       const responseData = await response.json();
       console.log('WhatsApp message sent successfully:', responseData);
-    } catch (error) {
+      toast.success('Your message has been sent successfully!');
+    } catch (error: any) {
       console.error('Error sending WhatsApp message:', error);
-      
+      setError('Failed to send WhatsApp message. Please try again.');
     }
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-4">
+      <ToastContainer />
+
       <div className="bg-white rounded-lg p-6 w-full max-w-md relative shadow-lg">
         {/* Close Button */}
         <button
