@@ -154,7 +154,7 @@ const FloorMapPage: React.FC = () => {
           </p>
           <br />
           <p className='pt-4 text-base sm:text-lg leading-relaxed'>
-          studios and 1 bhi starting from 20,70000 lakh
+          studios and 1 bhi starting from 20.7 lakh
           </p>
         </div>
         <div className="lg:w-1/2 flex justify-center">
