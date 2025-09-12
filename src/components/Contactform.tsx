@@ -57,16 +57,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
         timestamp: Date.now(),
       });
 
-      // 2. Send WhatsApp message with full contact data
-      await sendWhatsAppMessage(formData);
-
-      // 3. Optional: Set localStorage flag to prevent future popups
+      // 2. Optional: Set localStorage flag to prevent future popups
       localStorage.setItem('contactFormSubmitted', 'true');
 
-      // 4. Show success message
+      // 3. Show success message using toast
+      toast.success('Your message has been sent successfully!');
       setSuccess('Your message has been sent successfully!');
 
-      // 5. Auto-close the form after a delay (optional)
+      // 4. Auto-close the form after a delay (optional)
       setTimeout(() => {
         onClose();
       }, 2000);
@@ -75,72 +73,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
       setError('There was an error submitting the form. Please try again.');
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  /**
-   * Sends a WhatsApp message with full contact form data using the new API.
-   * @param data The full contact form data.
-   */
-  const sendWhatsAppMessage = async (data: FormData) => {
-    // Validate phone number (basic validation)
-    const phoneRegex = /^[0-9]{10,15}$/;
-    if (!phoneRegex.test(data.phone)) {
-      console.error('Invalid phone number format.');
-      setError('Please enter a valid phone number.');
-      return;
-    }
-
-    // Prepend country code (91 for India). Adjust if necessary.
-    const fullNumber = `91${data.phone}`;
-
-    // WhatsApp API endpoint (POST request)
-    const apiUrl = 'https://wa.medblisss.com/send-text';
-
-    // Define the token (your provided token)
-    const token = '9958399157'; // Ensure this is securely managed
-
-    // Define the recipient's number (e.g., your company's WhatsApp number)
-    const recipientNumber = '917869786492'; // Replace with your actual recipient number
-
-    // Construct the message with all form data
-    const message = `
-New Contact Form Submission:
-Name: ${data.name}
-Email: ${data.email}
-Phone: ${fullNumber}
-Message: ${data.message}
-    `.trim();
-
-    // Define the request payload
-    const payload = {
-      token: token,           // Your provided token
-      number: recipientNumber, // Recipient's number
-      message: message,         // The message to send
-    };
-
-    try {
-      // Make the POST request using fetch
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || `WhatsApp API responded with status ${response.status}`);
-      }
-
-      // Optionally, handle the response data
-      const responseData = await response.json();
-      console.log('WhatsApp message sent successfully:', responseData);
-      toast.success('Your message has been sent successfully!');
-    } catch (error: any) {
-      console.error('Error sending WhatsApp message:', error);
-      setError('Failed to send WhatsApp message. Please try again.');
     }
   };
 
