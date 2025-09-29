@@ -1,8 +1,8 @@
 // src/components/Footer.tsx
 
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react';
+import { Facebook,  Instagram,  MapPin, Phone, Mail } from 'lucide-react';
 import IMAGE from "./../../maden.png"
 
 export default function Footer() {

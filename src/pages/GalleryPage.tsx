@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { motion } from 'framer-motion';
 import PageHeader from '../components/shared/PageHeader';
 import { projects } from '../data/projects';

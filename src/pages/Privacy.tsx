@@ -1,6 +1,6 @@
 // PrivacyPolicyPage.tsx
 
-import React from 'react';
+// import React from 'react';
 import PageHeader from '../components/shared/PageHeader';
 import AnimatedSection from '../components/shared/AnimatedSection';
 

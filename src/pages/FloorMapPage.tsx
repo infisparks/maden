@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import PageHeader from '../components/shared/PageHeader';
+import { useState, useEffect } from 'react';
+import type React from 'react';
 import FloorMap from '../components/home/FloorMap';
-import m1 from './../icon/m1.png';
-import m2 from './../icon/m2.png';
 import building from './../icon/building.png';
 
 import { initializeApp } from 'firebase/app';
@@ -29,7 +27,6 @@ interface FormData {
 }
 
 const FloorMapPage: React.FC = () => {
-  const [hoveredImage, setHoveredImage] = useState<null | number>(null);
   const [isContactFormOpen, setIsContactFormOpen] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>({
     name: '',

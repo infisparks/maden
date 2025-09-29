@@ -1,11 +1,11 @@
 // src/pages/HomePage.js
 
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/home/Hero';
 import Philosophy from '../components/home/Philosophy';
-import Portfolio from '../components/home/Portfolio';
-import FloorMap from '../components/home/FloorMap';
+// import Portfolio from '../components/home/Portfolio';
+// import FloorMap from '../components/home/FloorMap';
 import Contact from '../components/home/Contact';
 import Projects from '../components/Projects';
 import ContactForm from '../components/Contactform';

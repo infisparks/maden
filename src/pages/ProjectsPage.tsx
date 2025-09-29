@@ -113,7 +113,7 @@ export default function ProjectsPage() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid md:grid-cols-3 gap-8">
-          {projects.map((project, index: number) => (
+          {projects.map((project) => (
             <AnimatedSection key={project.id} className="section">
               <a
                 href={`/projects/${project.id}`}

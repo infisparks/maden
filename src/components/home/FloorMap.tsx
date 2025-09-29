@@ -1,6 +1,6 @@
 // FloorMap.js
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 import second from './../../icon/2.jpg';
@@ -69,7 +69,7 @@ const FloorMap = () => {
     }
   };
 
-  const handleImageClick = (index) => {
+  const handleImageClick = (index: number) => {
     setCurrentImageIndex(index);
   };
 
