@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
-        <Header />
+        {/* <Header /> */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -29,7 +29,7 @@ function App() {
             <Route path="/floor-plans" element={<FloorMapPage />} />
           </Routes>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
