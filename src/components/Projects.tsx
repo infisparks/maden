@@ -14,7 +14,7 @@ const ProjectComponent = () => {
   return (
     <div className="bg-gradient-to-br from-white to-gray-100 text-[#18322F] py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl sm:text-5xl font-bold text-center mb-12 text-[#18322F]">Our Projects</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold text-center mb-12 text-[#18322F]">Our Upcoming Projects</h1>
         <div className="flex flex-col lg:flex-row items-start justify-between gap-12">
           {/* Left side - Project Description */}
           <div className="flex-1 space-y-6">
@@ -31,7 +31,7 @@ const ProjectComponent = () => {
                 onClick={handleViewMoreClick}  // Attach the click handler to the button
                 className="group bg-[#18322F] text-white px-6 py-3 rounded-lg shadow-lg hover:bg-[#2C4F5F] transition duration-300 flex items-center space-x-2"
               >
-                <span>View Detail</span>
+                <span>View Project Detail</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>

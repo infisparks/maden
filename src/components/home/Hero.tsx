@@ -45,7 +45,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <Link
-                to="/floor-plans"
+                to="/madenPage"
                 className="group inline-flex items-center gap-2 px-8 py-4 bg-[#b48c2e] text-white rounded-lg hover:bg-[#f6db98] hover:text-[#15302d] transition-colors duration-200"
               >
                 Explore Our Projects

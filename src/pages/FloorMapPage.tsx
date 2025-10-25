@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type React from 'react';
 import FloorMap from '../components/home/FloorMap';
-import building from './../icon/building.png';
+// import building from './../icon/building.png';
 
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, push } from 'firebase/database';
@@ -139,7 +139,7 @@ const FloorMapPage: React.FC = () => {
 
   return (
     <>
-      <section id='top' className="flex pt-20 flex-col lg:flex-row justify-center items-center min-h-screen bg-[#18322F] p-6 md:p-12">
+      {/* <section id='top' className="flex pt-20 flex-col lg:flex-row justify-center items-center min-h-screen bg-[#18322F] p-6 md:p-12">
         <div className=" text-white lg:w-1/2 lg:pr-8 mb-8 lg:mb-0 mt-4">
           <h1 className="text-3xl sm:text-4xl font-bold text-[#CFC29A] mb-4">
             Nova 1
@@ -161,7 +161,7 @@ const FloorMapPage: React.FC = () => {
             className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl h-auto rounded shadow-lg"
           />
         </div>
-      </section>
+      </section> */}
 
       <FloorMap/>
 {/* 

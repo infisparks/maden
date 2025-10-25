@@ -6,7 +6,7 @@ import Hero from '../components/home/Hero';
 import Philosophy from '../components/home/Philosophy';
 // --- NEW IMPORT ---
 import Legacy from '../components/home/Legacy'; 
-import AboutAlMaden from '../components/home/about-al-maden';
+// import AboutAlMaden from '../components/home/about-al-maden';
 // --- END NEW IMPORT ---
 // import Portfolio from '../components/home/Portfolio';
 // import FloorMap from '../components/home/FloorMap';
@@ -67,7 +67,7 @@ export default function HomePage() {
       <Philosophy />
       {/* --- NEW COMPONENT ADDED HERE --- */}
       <Legacy /> 
-      <AboutAlMaden />
+      {/* <AboutAlMaden /> */}
       {/* --- END NEW COMPONENT --- */}
       <Projects />
       {/* Uncomment if needed */}

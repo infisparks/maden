@@ -1,8 +1,9 @@
 // src/pages/AlMadenPage.tsx
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Construction, TrendingUp, DollarSign, Zap } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Construction, TrendingUp, DollarSign, Zap, ArrowRight } from 'lucide-react';
 // Assuming PageHeader is in '../components/shared/PageHeader'
 import PageHeader from '../shared/PageHeader'; // Assuming correct path is 'components/shared/PageHeader'
 import noori_heights from '../../icon/noori-heights.svg'; // Retaining imported asset path
@@ -14,8 +15,9 @@ import edu_crest_school from '../../icon/edu-crest-school.svg';
 import noori_crest from '../../icon/noori-crest.svg';
 import downe_house from '../../icon/down-house-school.svg';
 import al_maden from '../../icon/Al-maden-banner-img.svg';
-import building from '../../icon/al-maden-logo.svg';
+import building from '../../icon/maden-page-about-img.svg';
 import international_strategy from '../../icon/international-strategy-vision-img.svg';
+import buildings from '../../icon/building.png';
 
 
 
@@ -77,11 +79,23 @@ const ProjectCard = ({ title, location, description, imagePath }: ProjectCardPro
 
 
 export default function AlMadenPage() {
+    const navigate = useNavigate();
+
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const handleViewMoreClick = () => {
+        // Add your navigation logic here
+        navigate('/floor-plans');  // Redirect to the project page (adjust the route as needed)
+    };
+
     return (
         <>
             {/* Page Header - Dynamic content */}
             <PageHeader
-                title="AL Maden International Business"
+                title="Maden Projects"
                 subtitle="Derived by Vision, Powered by Execution"
                 image={al_maden}
             />
@@ -101,12 +115,17 @@ export default function AlMadenPage() {
 
                         {/* Text Content - Extracted from PDF */}
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-[#15302d] mb-6 border-l-4 border-[#b48c2e] pl-4">About AL Maden International Business</h2>
-                            <p className="text-lg text-gray-700 mb-4 font-medium">
-                                AL Maden International Business is a <span className="font-bold text-[#2C4F5F]">dynamic and diversified firm</span> specializing in <span className="font-bold text-[#2C4F5F]">construction contracting and material trading</span>. With a solid foundation in India's real estate and infrastructure sectors, the company has built a reputation for delivering <span className="font-bold text-[#2C4F5F]">high-quality, cost-effective, and innovative construction solutions</span>.
+                            <h2 className="text-3xl md:text-4xl font-bold text-[#15302d] mb-6 border-l-4 border-[#b48c2e] pl-4">About Maden MultiCorp</h2>
+                            <p className="text-lg text-gray-700 mb-4 font-normal">
+                                Maden MultiCorp is a <span className="font-bold text-[#2C4F5F]">dynamic and diversified firm</span> specializing in <span className="font-bold text-[#2C4F5F]">construction contracting and material trading</span>. With a solid foundation in India's real estate and infrastructure sectors, the company has built a reputation for delivering <span className="font-bold text-[#2C4F5F]">high-quality, cost-effective, and innovative construction solutions</span>.
                             </p>
-                            <p className="text-lg text-gray-700 font-medium">
-                                Over the years, AL Maden has successfully executed <span className="font-bold text-[#2C4F5F]">residential and infrastructure projects</span> that reflect excellence in design, engineering, and <span className="font-bold text-[#2C4F5F]">sustainability</span>. Our growth is fueled by a <span className="font-bold text-[#2C4F5F]">customer-first philosophy</span> and a deep commitment to innovation. We are now expanding our footprint to the Middle East, targeting Oman and Dubai.
+                            {/* --- NEW PARAGRAPH INSERTED HERE --- */}
+                            <p className="text-lg text-gray-700 mb-4 font-normal">
+                                At Maden MultiCorp LLP, we redefine luxury with a harmonious blend of <span className="font-bold text-[#2C4F5F]">sophistication and accessibility</span>. With over <span className="font-bold text-[#2C4F5F]">30 years of legacy</span> in the construction industry, we bring decades of <span className="font-bold text-[#2C4F5F]">expertise</span> into a new era, embracing <span className="font-bold text-[#2C4F5F]">cutting-edge techniques</span> and contemporary design under a bold new brand name.
+                            </p>
+                            {/* --- END NEW PARAGRAPH --- */}
+                            <p className="text-lg text-gray-700 font-normal">
+                                Over the years, Maden MultiCorp has successfully executed <span className="font-bold text-[#2C4F5F]">residential and infrastructure projects</span> that reflect excellence in design, engineering, and <span className="font-bold text-[#2C4F5F]">sustainability</span>. Our growth is fueled by a <span className="font-bold text-[#2C4F5F]">customer-first philosophy</span> and a deep commitment to innovation. We are now expanding our footprint to the Middle East, targeting Oman and Dubai.
                             </p>
                         </div>
 
@@ -115,7 +134,7 @@ export default function AlMadenPage() {
                             <img
                                 src={building} // IMAGE PATH 1: Use an image of an Indian project or skyline
                                 alt="Maden India Projects"
-                                className="rounded-lg shadow-xl w-full h-auto object-cover max-h-[500px]"
+                                className="rounded-lg shadow-xl w-full h-auto object-cover "
                             />
                         </div>
 
@@ -208,6 +227,53 @@ export default function AlMadenPage() {
                 {/* --- End Flagship Projects Section --- */}
 
 
+
+
+
+
+                 {/* Upcoming Project Section Starts  */}
+                <div className="bg-gradient-to-br from-white to-gray-100 text-[#18322F] py-16 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto">
+                        <h1 className="text-4xl sm:text-5xl font-bold text-center mb-12 text-[#18322F]">Our Upcoming Projects</h1>
+                        <div className="flex flex-col lg:flex-row items-start justify-between gap-12">
+                            {/* Left side - Project Description */}
+                            <div className="flex-1 space-y-6">
+                                <h2 className="text-3xl font-semibold">Nova 1</h2>
+                                <p className="text-lg leading-relaxed">
+                                    The <span className="font-bold text-[#2C4F5F]">Nova</span>, crafted by <span className="font-bold text-[#2C4F5F]">Maden Multicorp LLP</span>, is a premier residential project in <span className="font-bold text-[#2C4F5F]">Taloja, Navi Mumbai</span>, blending modern aesthetics with innovative design. It offers <span className="font-bold text-[#2C4F5F]">studio apartments</span> and <span className="font-bold text-[#2C4F5F]">1 BHK homes</span> tailored for contemporary living, featuring <span className="font-bold text-[#2C4F5F]">modular kitchens</span>, <span className="font-bold text-[#2C4F5F]">sofa-cum-beds</span>, <span className="font-bold text-[#2C4F5F]">double-height luxury lobbies</span>, and <span className="font-bold text-[#2C4F5F]">24/7 security</span>. Strategically located near the <span className="font-bold text-[#2C4F5F]">Mumbai-Pune Expressway</span>, it provides seamless connectivity to essential amenities like schools, hospitals, and business hubs. The Nova redefines urban living, offering luxury, practicality, and convenience in one space.
+                                </p>
+
+                                <p className="text-lg leading-relaxed">
+                                    The goal is to address various challenges in the industry, such as inefficiencies in <span className="font-bold text-[#2C4F5F]">data management</span>, security vulnerabilities, and lack of integration across systems.
+                                </p>
+                                <div className="pt-4">
+                                    <button
+                                        onClick={handleViewMoreClick}  // Attach the click handler to the button
+                                        className="group bg-[#18322F] text-white px-6 py-3 rounded-lg shadow-lg hover:bg-[#2C4F5F] transition duration-300 flex items-center space-x-2"
+                                    >
+                                        <span>View Project Detail</span>
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Right side - Project Image */}
+                            <div className="flex-1 lg:pl-8">
+                                <div className="relative w-full overflow-hidden rounded-lg shadow-2xl">
+                                    <img
+                                        src={buildings}
+                                        alt="Nova ONE Project"
+                                        className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              {/* Upcoming Project Section Ends  */}
+
+
+
                 {/* 2. Core Services & Competitive Advantages (Restored to position after projects) */}
                 <motion.section
                     className="py-20"
@@ -249,8 +315,8 @@ export default function AlMadenPage() {
                     </div>
                 </motion.section>
 
-               {/* 3. International Expansion (Retained Dark Background Section) */}
-               <motion.section
+                {/* 3. International Expansion (Retained Dark Background Section) */}
+                <motion.section
                     className="py-20 bg-[#15302d]"
                     initial="initial"
                     whileInView="animate"
@@ -271,7 +337,7 @@ export default function AlMadenPage() {
                         <div className="order-1 md:order-2 mr-10 ml-10">
                             <h2 className="text-3xl md:text-4xl font-bold text-[#f6db98] mb-6 border-l-4 border-[#b48c2e] pl-4">International Strategy & Vision</h2>
                             <p className="text-lg text-white/90 mb-4 font-medium">
-                                Al Maden International Business is expanding its footprint to the Middle East, specifically targeting Oman and Dubai, to serve the growing demand for residential, commercial, and government infrastructure development. Our international strategy is built on maximizing efficiency and compliance from day one.
+                                Maden MultiCorp is expanding its footprint to the Middle East, specifically targeting Oman and Dubai, to serve the growing demand for residential, commercial, and government infrastructure development. Our international strategy is built on maximizing efficiency and compliance from day one.
                             </p>
                             <ul className="list-disc list-inside space-y-3 text-white/90 text-lg font-medium">
                                 <li className="text-white/90"><span className="font-bold text-[#f6db98]">Vision:</span> To become a leading name in the contracting and trading industry across the GCC, recognized for integrity, innovation, and execution excellence.</li>
@@ -295,7 +361,7 @@ export default function AlMadenPage() {
                     <div className="p-10 bg-gray-50 rounded-xl shadow-2xl relative border-t-8 border-[#b48c2e] max-w-5xl mx-auto">
                         <h3 className="text-3xl font-bold text-[#15302d] mb-4">From the Desk of the Director</h3>
                         <blockquote className="text-xl italic text-gray-700 leading-relaxed">
-                            "At AL Maden International Business, we believe in building more than just structures – we build <span className="font-bold text-[#2C4F5F]">trust, value, and enduring partnerships</span>. Our journey, which began in India, has shaped us into a name synonymous with reliability. As we confidently step into new territories like Oman and Dubai, we carry the same core values that define us: <span className="font-bold text-[#2C4F5F]">integrity, innovation, and excellence</span>. Our aim is to bring <span className="font-bold text-[#2C4F5F]">world-class solutions backed by our Indian expertise and a global outlook</span> to fulfill the dreams of those who live, work, and grow in our projects."
+                            "At Maden MultiCorp, we believe in building more than just structures – we build <span className="font-bold text-[#2C4F5F]">trust, value, and enduring partnerships</span>. Our journey, which began in India, has shaped us into a name synonymous with reliability. As we confidently step into new territories like Oman and Dubai, we carry the same core values that define us: <span className="font-bold text-[#2C4F5F]">integrity, innovation, and excellence</span>. Our aim is to bring <span className="font-bold text-[#2C4F5F]">world-class solutions backed by our Indian expertise and a global outlook</span> to fulfill the dreams of those who live, work, and grow in our projects."
                         </blockquote>
                         <p className="text-right mt-6 text-[#15302d] font-semibold">
                             — Faiz Zariwala, Founder and Director

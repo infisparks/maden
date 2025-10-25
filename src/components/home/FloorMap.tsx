@@ -82,7 +82,7 @@ const FloorMap = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 mt-16"
         >
           <h2 className="text-4xl font-extrabold text-[#15302d] mb-4">
             Project Details

@@ -28,7 +28,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold text-[#f6db98] mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li><Link to="/about" className="text-[#f6db98]/80 hover:text-[#f6db98]">About Us</Link></li>
-              <li><Link to="/Floor Plans" className="text-[#f6db98]/80 hover:text-[#f6db98]">Projects</Link></li>
+              <li><Link to="/madenPage" className="text-[#f6db98]/80 hover:text-[#f6db98]">Projects</Link></li>
               <li><Link to="/gallery" className="text-[#f6db98]/80 hover:text-[#f6db98]">Gallery</Link></li>
               <li><Link to="/contact" className="text-[#f6db98]/80 hover:text-[#f6db98]">Contact</Link></li>
               <li><Link to="/privacy" className="text-[#f6db98]/80 hover:text-[#f6db98]">Privacy Policy</Link></li>
