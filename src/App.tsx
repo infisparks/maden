@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
 import ProjectsPage from './pages/ProjectsPage';
 import AboutPage from './pages/AboutPage';
+import AlMadenPage from './components/home/Al-madenPage';
 import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 import FloorMapPage from './pages/FloorMapPage';
@@ -15,10 +16,11 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
-        {/* <Header /> */}
+        <Header />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/Al-madenPage" element={<AlMadenPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/projects/:id" element={<ProjectsPage />} />
             <Route path="/about" element={<AboutPage />} />
@@ -29,7 +31,7 @@ function App() {
             <Route path="/floor-plans" element={<FloorMapPage />} />
           </Routes>
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );
