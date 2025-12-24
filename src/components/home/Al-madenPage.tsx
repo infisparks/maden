@@ -364,7 +364,7 @@ export default function AlMadenPage() {
                             "At Maden MultiCorp, we believe in building more than just structures – we build <span className="font-bold text-[#2C4F5F]">trust, value, and enduring partnerships</span>. Our journey, which began in India, has shaped us into a name synonymous with reliability. As we confidently step into new territories like Oman and Dubai, we carry the same core values that define us: <span className="font-bold text-[#2C4F5F]">integrity, innovation, and excellence</span>. Our aim is to bring <span className="font-bold text-[#2C4F5F]">world-class solutions backed by our Indian expertise and a global outlook</span> to fulfill the dreams of those who live, work, and grow in our projects."
                         </blockquote>
                         <p className="text-right mt-6 text-[#15302d] font-semibold">
-                            — Faiz Zariwala, Founder and Director
+                            — Ubaid Zariwala, Founder and Director
                         </p>
                     </div>
                 </motion.section>
